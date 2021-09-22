@@ -78,7 +78,29 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4"> <strong>Category Selected: </strong> {{$user->category}}</div>
+                                    <div class="col-md-4"> <strong>Category Selected: </strong>
+                                        @if(in_array('open_merit',$category_options))
+                                            <span style="color: orangered"><em>District Quota / Open Merit,</em></span>
+                                        @endif
+                                        @if(in_array('overseas',$category_options))
+                                           <span style="color: orangered"><em> Overseas,</em></span>
+                                        @endif
+                                        @if(in_array('disability',$category_options))
+                                           <span style="color: orangered"><em> Student with Disabilities,</em></span>
+                                        @endif
+                                        @if(in_array('doctor',$category_options))
+                                          <span style="color: orangered"><em> Doctor's Children,</em></span>
+                                        @endif
+                                        @if(in_array('special_quota',$category_options))
+                                            <span style="color: orangered"><em>Special Quota for Neelam & Leepa,</em></span>
+                                        @endif
+                                        @if(in_array('self',$category_options))
+                                           <span style="color: orangered"><em> Self Finance,</em></span>
+                                        @endif
+                                        @if(in_array('bds',$category_options))
+                                           <span style="color: orangered"><em> BDS</em></span>
+                                        @endif
+                                    </div>
                                     <div class="col-md-4"> <strong>Hafiz e Quran: </strong> Yes/No</div>
                                 </div>
                                 <div class="row"><hr width="100%"></div>

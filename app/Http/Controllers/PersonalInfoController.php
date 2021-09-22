@@ -33,7 +33,9 @@ class PersonalInfoController extends Controller
         'cnic' => ['required', 'max:13'],
         'image1' => [''],
         ]);
-
+        $request->merge([
+            'category' => json_encode($request->category_options),
+        ]);
         if ($request->has('image1')) {
             $path = $request->file('image1')->store('', 'public');
             $request->merge(['image' => $path]);
@@ -55,8 +57,8 @@ class PersonalInfoController extends Controller
 
     public function profile(Request $request,$user_id){
        $user = User::find($user_id);
-
-       return view('users.profile', compact('user'));
+       $category_options = json_decode($user->category);
+       return view('users.profile', compact('user', 'category_options'));
     }
 
     public function saveEntryTest(Request $request,$user_id){
@@ -73,7 +75,7 @@ class PersonalInfoController extends Controller
       $user->save();
 
 
-      return view('users.profile', compact('user'))->with('success', 'Data Added Successfully!');
+      return view('document.index', compact('user'))->with('success', 'Data Added Successfully!');
     }
 
 }

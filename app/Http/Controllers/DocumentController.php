@@ -30,23 +30,21 @@ class DocumentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $request->validate([
-            'matric1' => [''],
-            'fsc1' => [''],
-            'cnic1' => [''],
-            'state_subject1' => [''],
-            'domicile1' => [''],
-            'prc1' => [''],
-            'signature1' => [''],
+            'matric1' => 'mimes:jpg,bmp,png',
+            'fsc1' => 'mimes:jpg,bmp,png',
+            'cnic1' => 'mimes:jpg,bmp,png',
+            'state_subject1' => 'mimes:jpg,bmp,png',
+            'domicile1' => 'mimes:jpg,bmp,png',
+            'prc1' => 'mimes:jpg,bmp,png',
+            'signature1' => 'mimes:jpg,bmp,png',
         ]);
 
-        $document = new Document();
-        $document->user_id = $id;
 
         if ($request->has('matric1')) {
             $path = $request->file('matric1')->store('', 'public');
@@ -76,13 +74,16 @@ class DocumentController extends Controller
             $path = $request->file('signature1')->store('', 'public');
             $request->merge(['signature' => $path]);
         }
+        $request->merge(['user_id' => auth()->user()->id]);
+        $document1 = Document::create($request->all());
+        return redirect()->route('profile', auth()->user()->id)->with('success', 'Documents Added Successfully!');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -93,7 +94,7 @@ class DocumentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -104,8 +105,8 @@ class DocumentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,7 +117,7 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

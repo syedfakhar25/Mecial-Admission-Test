@@ -52,6 +52,9 @@ class QualificationController extends Controller
                         'board' => $request->board[$count],
                         'year' => $request->year[$count],
                         'obtained_marks' => $request->obtained_marks[$count],
+                        'phy' => $request->phy,
+                        'chem' => $request->chem,
+                        'bio' => $request->bio,
                         'total_marks' => $request->total_marks[$count],
                     ]);
                 }

@@ -22,6 +22,10 @@ class CreateQualificationsTable extends Migration
             $table->string('board')->nullable();
             $table->string('year')->nullable();
             $table->integer('obtained_marks')->nullable();
+            //these three fields are for fresh candidates only
+            $table->integer('phy')->nullable();
+            $table->integer('chem')->nullable();
+            $table->integer('bio')->nullable();
             $table->integer('total_marks')->nullable();
             $table->timestamps();
         });

@@ -38,8 +38,9 @@
                             <div class="card-body">
                                 <h4 style="font-weight: bold">Upload Images of following documents here</h4>
                                 <h6 style="color:red; font-weight: bold">In case of signature and Thumb Impression, do it on paper and take picture</h6>
+                                <x-jet-validation-errors class="mb-4" />
                                 <hr width="100%">
-                                <form method="POST" action="{{ route('documents.store',Auth::user()->id) }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('documents.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">

@@ -40,7 +40,7 @@
                                 <form method="POST" action="{{route('entrytest' , Auth::user()->id)}}">
                                     @method('PUT')
                                     @csrf
-                                        <div class="row"><h4>MDCAT</h4></div>
+                                        <div class="row"><h4>MDCAT</h4><span style="font-weight: bold; color: red"> &nbsp Marks must not be less than 60% i.e. 137/210</span></div>
                                         <div class="row">
                                             <div class="col-md-4 form-group">
                                                 <label >Roll No:</label>

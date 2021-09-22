@@ -35,16 +35,13 @@
                                         <div class="form-group">
                                             <label>Part 1 Category of Seats [Select the relevant]</label>
                                             <div class="form-check col-12">
-                                                <select class="form-control" id="cat"  name="category[]">
-                                                    <option disabled >--Select Category--</option>
-                                                    <option value="open_merit" {{ $user->category == 'open_merit' ? 'selected' : '' }}>District Quota / Open Merit</option>
-                                                    <option value="overseas" {{ $user->category == 'overseas' ? 'selected' : '' }}>Overseas</option>
-                                                    <option value="disability" {{ $user->category == 'disability' ? 'selected' : '' }}>Student with Disabilities</option>
-                                                    <option value="doctor" {{ $user->category == 'doctor' ? 'selected' : '' }}>Doctor's Children</option>
-                                                    <option value="special_quota" {{ $user->category == 'special_quota' ? 'selected' : '' }}>Special Quota for Neelam & Leepa</option>
-                                                    <option value="self" {{ $user->category == 'self' ? 'selected' : '' }}>Self Finance</option>
-                                                    <option value="bds" {{ $user->category == 'bds' ? 'selected' : '' }}>BDS</option>
-                                                </select>
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="open_merit">District Quota / Open Merit
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="overseas">Overseas
+                                                <input class="col-md-3"type="Checkbox" name="category  x  _options[]" value="disability">Student with Disabilities
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="doctor">Doctor's Children
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="special_quota">Special Quota for Neelam & Leepa
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="self">Self Finance
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="bds">BDS
                                             </div>
                                         </div>
                                     </div>
@@ -172,10 +169,17 @@
                                             <!-- text input -->
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" name="email" value="{{$user->email}}" class="form-control" placeholder="e.g; example@gmail.com">
+                                                <input type="text" name="email" value="{{$user->email}}" disabled class="form-control" placeholder="e.g; example@gmail.com">
                                             </div>
                                         </div>
-
+                                    </div>
+                                    <div class="row">
+                                        <hr width="100%">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="text-center"> Choice of Institution</h4>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <button class="btn btn-primary">Save & Next</button>
