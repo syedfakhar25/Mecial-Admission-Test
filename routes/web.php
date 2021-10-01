@@ -27,6 +27,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('personalInfo', PersonalInfoController::class);
     //approve a user
     Route::get('/approve/{user_id}', [PersonalInfoController::class, 'approve'])->name('approve');
+
+    //user applies for admission VIEW
+    Route::get('/apply', [PersonalInfoController::class, 'apply'])->name('apply');
+
+    //user applies for admission STORE
+    Route::put('/applied', [PersonalInfoController::class, 'applied'])->name('applied');
     //view profile
     Route::get('/profile/{user_id}', [PersonalInfoController::class, 'profile'])->name('profile');
     //save mcat/sat score

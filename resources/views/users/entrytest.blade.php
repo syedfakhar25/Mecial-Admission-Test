@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Center:</label>
-                                                <input class="form-control" type="text" name="test_center" placeholder="center name">
+                                                <input class="form-control" type="text" name="test_center" value="{{Auth::user()->test_center}} placeholder="center name">
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Marks Obtained:</label>
@@ -68,19 +68,19 @@
                                         <div class="row">
                                             <div class="col-md-4 form-group">
                                                 <label>Chemistry:</label>
-                                                <input class="form-control" type="text" name="chem" placeholder="0/800">
+                                                <input class="form-control" type="text" name="chem" value="{{Auth::user()->chem}}" placeholder="0/800">
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Biology:</label>
-                                                <input class="form-control" type="text" name="bio" placeholder="0/800">
+                                                <input class="form-control" type="text" name="bio" value="{{Auth::user()->bio}}" placeholder="0/800">
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Physics:</label>
-                                                <input class="form-control" type="text" name="physics" placeholder="0/800">
+                                                <input class="form-control" type="text" name="physics" value="{{Auth::user()->physics}}" placeholder="0/800">
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Test Date:</label>
-                                                <input class="form-control" type="date" name="test_date" placeholder="">
+                                                <input class="form-control" type="date" name="test_date" value="{{Auth::user()->test_date}}" placeholder="">
                                             </div>
                                         </div>
                                         <div class="row">

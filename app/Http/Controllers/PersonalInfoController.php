@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admission;
 use App\Models\College;
 use App\Models\User;
 use Dotenv\Validator;
@@ -73,6 +74,7 @@ class PersonalInfoController extends Controller
     }
 
     public function profile(Request $request,$user_id){
+        //if()
        $user = User::find($user_id);
 
         if(!empty($user->category)  && strtolower($user->category) != 'null'){
@@ -121,6 +123,15 @@ class PersonalInfoController extends Controller
 
 
       return view('document.index', compact('user'))->with('success', 'Data Added Successfully!');
+    }
+
+    public function apply(Request $request){
+        $admission = Admission::all();
+        return view('users.apply', compact('admission'));
+    }
+
+    public function applied(Request $request){
+       dd('idr a gya');
     }
 
 }

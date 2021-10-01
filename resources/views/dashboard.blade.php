@@ -196,19 +196,42 @@
                             </h2>
                         </div>
                         <div class="row m-auto" >
-                          <em style="font-weight:bold; font-size: 20px;">Note: Kindly fill the application carefully and once submitted can not be edited</em>
+                          <em style="font-weight:bold; font-size: 20px;">Note: Kindly update profile first, fill it carefully then come to apply once submitted can not be edited</em>
                         </div>
                         <div>
                             <br>
                         </div>
-                        <div class="row m-auto" >
-                            <a href="{{route('personalInfo.index')}}" class="btn btn-danger">
-                                <em style=" color: white;
-                                text-shadow: 1px 1px 1px black; font-size: 40px;
-                                ">
-                                    Click to Proceed
-                                </em>
-                            </a>
+
+                        <div class="row m-3" >
+                            <div class="info-box col-md-4">
+                                <a class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></a>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Update Profile</span>
+                                    <a class="info-box-number">
+                                      click to proceed
+                                    </a>
+                             </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <div class="info-box col-md-4">
+                                <a class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar"></i></a>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Application Status</span>
+                                    <span class="info-box-number">click to proceed</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <div class="info-box col-md-4">
+                                <a href="{{route('apply')}}" class="info-box-icon bg-success elevation-1"><i class="fas fa-list"></i></a>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Apply Now</span>
+                                    <span class="info-box-number">click to proceed</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
                         </div>
                     </div>
                     <!-- /.widget-user -->
