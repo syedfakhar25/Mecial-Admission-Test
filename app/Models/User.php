@@ -32,6 +32,7 @@ class User extends Authenticatable
         'image',
         'entry_marks',
         'category',
+        'preference',
         'test_type',
         'test_center',
         'chem',

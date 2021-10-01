@@ -18,9 +18,12 @@ class Qualification extends Model
         'board',
         'year',
         'obtained_marks',
+        'qual_type',
         'phy',
         'chem',
         'bio',
+        'total_science',
+        'fresh_candidate',
         'total_marks',
     ];
 

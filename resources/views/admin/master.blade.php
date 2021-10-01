@@ -12,6 +12,9 @@
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="{{url('https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{url('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Ionicons -->
@@ -102,7 +105,7 @@
         <a href="index3.html" class="brand-link">
             <img src="https://ajk.gov.pk/logo/college_logo.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AJKMC | Admission</span>
+            <span class="brand-text font-weight-light">JAC GoAJK </span>
         </a>
 
         <!-- Sidebar -->
@@ -122,7 +125,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview menu-open {{ request()->is('/dashboard') ? 'active' : '' }}">
                         <a href="{{route('dashboard.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -179,6 +182,24 @@
                             </p>
                         </a>
                     </li>
+                    @else
+                        <li class="nav-item has-treeview {{ request()->is('/colleges') ? 'active' : '' }}">
+                            <a href="/colleges" class="nav-link ">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>
+                                    Manage Institutions
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-treeview {{ request()->is('/admissions') ? 'active' : '' }}">
+                            <a href="{{route('admissions.index')}}" class="nav-link ">
+                                <i class="nav-icon fas fa-school"></i>
+                                <p>
+                                    Manage Admissions
+                                </p>
+                            </a>
+                        </li>
                     @endif
 
                     <li class="nav-item has-treeview ">
@@ -252,6 +273,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
 </body>
 </html>

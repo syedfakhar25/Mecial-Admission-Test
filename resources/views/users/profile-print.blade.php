@@ -56,30 +56,30 @@
                 </div>
                 <div class="row">
                     <div class="col-md-9">
-                            <h6 style="font-weight: bold"> Part 1 &nbsp &nbsp Selected Categories </h6>
-                            <h6 style="font-weight: bold">
-                                @if(in_array('open_merit',$category_options))
-                                    <span style="color: orangered"><em>District Quota / Open Merit <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                                @if(in_array('overseas',$category_options))
-                                    <span style="color: orangered"><em> Overseas <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                                @if(in_array('disability',$category_options))
-                                    <span style="color: orangered"><em> Student with Disabilities <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                                @if(in_array('doctor',$category_options))
-                                    <span style="color: orangered"><em> Doctor's Children <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                                @if(in_array('special_quota',$category_options))
-                                    <span style="color: orangered"><em>Special Quota for Neelam & Leepa <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                                @if(in_array('self',$category_options))
-                                    <span style="color: orangered"><em> Self Finance <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                                @if(in_array('bds',$category_options))
-                                    <span style="color: orangered"><em> BDS <i class="fa fa-check"></i></em></span><br>
-                                @endif
-                            </h6>
+                        <h6 style="font-weight: bold"> Part 1 &nbsp &nbsp Selected Categories </h6>
+                        <h6 style="font-weight: bold">
+                            @if(in_array('open_merit',$category_options))
+                                <span style="color: orangered"><em>District Quota / Open Merit <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                            @if(in_array('overseas',$category_options))
+                                <span style="color: orangered"><em> Overseas <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                            @if(in_array('disability',$category_options))
+                                <span style="color: orangered"><em> Student with Disabilities <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                            @if(in_array('doctor',$category_options))
+                                <span style="color: orangered"><em> Doctor's Children <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                            @if(in_array('special_quota',$category_options))
+                                <span style="color: orangered"><em>Special Quota for Neelam & Leepa <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                            @if(in_array('self',$category_options))
+                                <span style="color: orangered"><em> Self Finance <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                            @if(in_array('bds',$category_options))
+                                <span style="color: orangered"><em> BDS <i class="fa fa-check"></i></em></span><br>
+                            @endif
+                        </h6>
                     </div>
                     <div class="col-md-3">
                         <img src="{{\Illuminate\Support\Facades\Storage::url($user->image)}}    " alt="img" height="100px">
@@ -90,73 +90,73 @@
                     <div class="col-md-12">
                         <h6 style="font-weight: bold"> Part 2 Personal Information</h6>
                         <h6 style="">
-                         1. Hafiz-e-Quran
+                            1. Hafiz-e-Quran
                         </h6>
                     </div>
 
                     <div class="col-md-12">
-                    <h6>2. Name of Applicant</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->name}}</h6>
+                        <h6>2. Name of Applicant</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->name}}</h6>
                     </div>
 
                     <div class="col-md-12">
-                    <h6>3. Father/Guardian's Name</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->guardian_name}}</h6>
+                        <h6>3. Father/Guardian's Name</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->guardian_name}}</h6>
                     </div>
 
                     <div class="col-md-12">
-                    <h6>4. Mother Name</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->mother_name}}</h6>
+                        <h6>4. Mother Name</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->mother_name}}</h6>
                     </div>
 
                     <div class="col-md-4">
-                    <h6>5. Gender</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->gender}}</h6>
+                        <h6>5. Gender</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->gender}}</h6>
                     </div>
 
                     <div class="col-md-8">
-                    <h6>6. Nationality</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->nationality}}</h6>
+                        <h6>6. Nationality</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->nationality}}</h6>
                     </div>
 
                     <div class="col-md-6">
-                    <h6>7. Date of Birth</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->dob}}</h6>
+                        <h6>7. Date of Birth</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->dob}}</h6>
                     </div>
 
                     <div class="col-md-6">
-                    <h6>8. Nationality</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->domicile}}</h6>
+                        <h6>8. Nationality</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->domicile}}</h6>
                     </div>
 
                     <div class="col-md-12">
-                    <h6>9. Area</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->area}}</h6>
+                        <h6>9. Area</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->area}}</h6>
                     </div>
 
                     <div class="col-md-12">
-                    <h6>10. CNIC/ Smart Card/NICOP/POC:</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->cnic}}</h6>
+                        <h6>10. CNIC/ Smart Card/NICOP/POC:</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->cnic}}</h6>
                     </div>
 
                     <div class="col-md-12">
-                    <h6>11. Mailing Address(Res):</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->address}}</h6>
+                        <h6>11. Mailing Address(Res):</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->address}}</h6>
                     </div>
 
                     <div class="col-md-4">
-                    <h6>12. Tel(Landline):</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->landline}}</h6>
+                        <h6>12. Tel(Landline):</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->landline}}</h6>
                     </div>
 
                     <div class="col-md-4">
-                    <h6>13. Cell:</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->mobile}}</h6>
+                        <h6>13. Cell:</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->mobile}}</h6>
                     </div>
 
                     <div class="col-md-4">
-                    <h6>14. E-mail:</h6>
-                    <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->email}}</h6>
+                        <h6>14. E-mail:</h6>
+                        <h6 style="border:black; border-width:1px; border-style:solid;">{{$user->email}}</h6>
                     </div>
                 </div>
                 <div class="row"><br><br></div>

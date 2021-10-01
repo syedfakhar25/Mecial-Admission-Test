@@ -35,13 +35,13 @@
                                         <div class="form-group">
                                             <label>Part 1 Category of Seats [Select the relevant]</label>
                                             <div class="form-check col-12">
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="open_merit">District Quota / Open Merit
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="overseas">Overseas
-                                                <input class="col-md-3"type="Checkbox" name="category  x  _options[]" value="disability">Student with Disabilities
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="doctor">Doctor's Children
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="special_quota">Special Quota for Neelam & Leepa
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="self">Self Finance
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" value="bds">BDS
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'open_merit', $categories) ? 'checked' : '' }} value="open_merit">District Quota / Open Merit
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'overseas', $categories) ? 'checked' : '' }} value="overseas">Overseas
+                                                <input class="col-md-3"type="Checkbox" name="category_options[]" {{ in_array( 'disability', $categories) ? 'checked' : '' }} value="disability">Student with Disabilities
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'doctor', $categories) ? 'checked' : '' }} value="doctor">Doctor's Children
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'special_quota', $categories) ? 'checked' : '' }} value="special_quota">Special Quota for Neelam & Leepa
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'self', $categories) ? 'checked' : '' }} value="self">Self Finance
+                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'bds', $categories) ? 'checked' : '' }} value="bds">BDS
                                             </div>
                                         </div>
                                     </div>
@@ -50,14 +50,14 @@
                                         <div class="form-group">
                                             <label>Part 2 Personal Information</label>
                                             <div class="form-check ">
-                                                <input class="form-check-input" name="hafiz_quran" value="1" type="checkbox">
+                                                <input class="form-check-input" {{ $user->hafiz_quran == 1 ? 'checked' : '' }} name="hafiz_quran" value="1" type="checkbox">
                                                 <label class="form-check-label">Hafiz e Quran</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                        <div class="form-group">
-                                           <label class="form-label" for="customFile">Upload Image</label>
+                                           <label class="form-label" for="customFile">Upload Image </label><span><em style="color: green">&nbsp Image must be type of jpg, png</em></span>
                                            <input type="file" class="form-control" name="image1" id="customFile" />
                                        </div>
                                     </div>
@@ -141,7 +141,7 @@
                                             <!-- text input -->
                                             <div class="form-group">
                                                 <label>CNIC</label><em>(without dashes)</em>
-                                                <input type="text" name="cnic" value="{{$user->cnic}}" class="form-control" placeholder="e.g; 8220312345678">
+                                                <input type="text" name="cnic" value="{{$user->cnic}}" class="form-control" placeholder="e.g; 8220312345678" disabled>
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
@@ -177,8 +177,24 @@
                                         <hr width="100%">
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <h4 class="text-center"> Choice of Institution</h4>
+                                        <div class="col-md-12 form-group">
+                                            <h4 class=""> Choice of Institution</h4> <span style="font-weight: bold; color: red"><em>(Priority of institute is first if you select it first)</em></span>
+                                        </div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-md-6">
+
+                                            <style>
+                                                .select2 {
+                                                    width: 100% !important;
+                                                }
+                                            </style>
+                                            <select class="form-control  multiple-select" name="preference_select[]" multiple>
+                                                <option disabled>-- Select Institutes --</option>
+                                                @foreach($colleges as $college)
+                                                <option value="{{$college->id}}" {{ $user->prefrences == $college->id ? 'selected' : '' }}>{{$college->colleges}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -202,10 +218,9 @@
 
 @endsection
 
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
-        alert('msg');
-        $('#cat').select2();
+        $('.multiple-select').select2();
     });
 </script>

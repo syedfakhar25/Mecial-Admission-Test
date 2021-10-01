@@ -29,7 +29,8 @@ class CreateUsersTable extends Migration
             $table->integer('physics')->nullable();
             $table->date('test_date')->nullable();
 
-            $table->string('category')->nullable();
+            $table->string('category')->nullable(); //selection of quota
+            $table->string('preference')->nullable(); //selection of colleges
             $table->string('test_type')->nullable();
             $table->boolean('approved')->nullable();
             $table->boolean('hafiz_quran')->nullable();

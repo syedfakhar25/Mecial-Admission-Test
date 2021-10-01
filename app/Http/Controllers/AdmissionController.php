@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\College;
-use App\Models\User;
+use App\Models\Admission;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
 
-class DashboardController extends Controller
+class AdmissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,26 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-       // $users = User::all();
-
-        $users = QueryBuilder::for(User::class)
-                ->allowedFilters(['name', 'category','cnic' , 'domicile'])
-            ->get();
-        $colleges = College::all();
-        $college_count = $colleges->count();
-        /*$users = DB::table('users')->paginate(5);*/
-        $q_approved = $users->where('approved', '=', '1');
-        $q_not_approved = $users->where('approved', '!=', '1');
-        $approved = count($q_approved);
-        $not_approved = count($q_not_approved);
-        $total_users = count($users);
-       return view('dashboard', compact(
-           'users',
-           'approved',
-           'not_approved',
-           'total_users',
-           'college_count',
-       ));
+        $admissions = Admission::all();
+        return view('admissions.index', compact('admissions'));
     }
 
     /**
@@ -58,7 +36,16 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'admission_title' => ['required'],
+            'close_date' => ['required'],
+        ]);
+        Admission::create([
+            'admission_title' => $request['admission_title'],
+            'close_date' => $request['close_date'],
+        ]);
+
+        return redirect()->back()->with('success', 'Admission Created Successfully');
     }
 
     /**
@@ -80,7 +67,8 @@ class DashboardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admission = Admission::find($id);
+        return view('admissions.edit', compact('admission'));
     }
 
     /**
@@ -92,7 +80,7 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd('im here');
     }
 
     /**
@@ -103,6 +91,8 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admission = Admission::find($id);
+        $admission->delete();
+        return redirect()->back()->with('success', 'Deleted');
     }
 }

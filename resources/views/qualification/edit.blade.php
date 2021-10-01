@@ -33,50 +33,52 @@
                                 <div class="alert " role="alert">
                                     {{ session('error') }}
                                 </div>
-                            @endif
-                            <!-- /.card-header -->
+                        @endif
+                        <!-- /.card-header -->
                             <div class="card-body">
-                                <form method="POST" action="{{ route('qualification.store') }}"  enctype="multipart/form-data">
+                                <form method="PUT" action="{{ route('update_qualifications') }}"  enctype="multipart/form-data">
+                                    @method('PUT')
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12"> <b><em style="color: red">For Matric/O Levels</em></b></div>
                                         <div class="col-md-3 form-group">
                                             <label>Examination Passed</label>
-                                            <input type="text" class="form-control" name="exam[]" value="{{old('exam')}}" placeholder="e.g; SSC/ O level">
+                                            <input type="text" class="form-control" name="exam[]" value="{{$matric->exam}}" placeholder="e.g; SSC/ O level">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Science Subject</label>
-                                            <input type="text" class="form-control" name="subject[]" value="{{old('subject')}}"placeholder="e.g; Science / Pre Medical">
+                                            <input type="text" class="form-control" name="subject[]" value="{{$matric->subject}}"placeholder="e.g; Science / Pre Medical">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Institution Type</label>
-                                            <input type="text" class="form-control" name="institute[]" value="{{old('institute')}}" placeholder="public / private sector">
+                                            <input type="text" class="form-control" name="institute[]" value="{{$matric->institute}}" placeholder="public / private sector">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Board University</label>
-                                            <input type="text" class="form-control" name="board[]" value="{{old('board')}}">
+                                            <input type="text" class="form-control" name="board[]" value="{{$matric->board}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Year of Passing</label>
-                                            <input type="text" class="form-control" name="year[]" value="{{old('year')}}">
+                                            <input type="text" class="form-control" name="year[]" value="{{$matric->year}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Marks Obtained</label>
-                                            <input type="text" class="form-control" name="obtained_marks[]" value="{{old('obtained_marks')}}">
+                                            <input type="text" class="form-control" name="obtained_marks[]" value="{{$matric->obtained_marks}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Total Marks</label>
-                                            <input type="text" class="form-control" name="total_marks[]" value="{{old('total_marks')}}">
+                                            <input type="text" class="form-control" name="total_marks[]" value="{{$matric->total_marks}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <input type="text" class="form-control" name="qual_type[]" value="matric" hidden>
+                                            <input type="text" class="form-control" name="qual_id[]" value="{{$matric->id}}" hidden>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -86,27 +88,27 @@
                                         <div class="col-md-12"> <b><em style="color: red">For FSc/A Levels</em></b> <span style="font-weight: bold; color: darkblue">(Fresh Candidates will enter only subject marks e.g; Physics, Chemistry, Biology)</span></div>
                                         <div class="col-md-3 form-group">
                                             <label>Examination Passed</label>
-                                            <input type="text" class="form-control" name="exam[]" value="{{old('exam')}}" placeholder="e.g; HSSC/ A level">
+                                            <input type="text" class="form-control" name="exam[]" value="{{$fsc->exam}}" placeholder="e.g; HSSC/ A level">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Science Subject</label>
-                                            <input type="text" class="form-control" name="subject[]" value="{{old('subject')}}"placeholder="e.g; Science / Pre Medical">
+                                            <input type="text" class="form-control" name="subject[]" value="{{$fsc->subject}}"placeholder="e.g; Science / Pre Medical">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Institution Type</label>
-                                            <input type="text" class="form-control" name="institute[]" value="{{old('institute')}}" placeholder="public / private sector">
+                                            <input type="text" class="form-control" name="institute[]" value="{{$fsc->institute}}" placeholder="public / private sector">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Board University</label>
-                                            <input type="text" class="form-control" name="board[]" value="{{old('board')}}">
+                                            <input type="text" class="form-control" name="board[]" value="{{$fsc->board}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Year of Passing</label>
-                                            <input type="text" class="form-control" name="year[]" value="{{old('year')}}">
+                                            <input type="text" class="form-control" name="year[]" value="{{$fsc->year}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
@@ -121,40 +123,43 @@
 
                                         <div class="col-md-3 form-group">
                                             <input type="text" class="form-control" name="qual_type[]" value="fsc" hidden>
+                                            <input type="text" class="form-control" name="qual_id[]" value="{{$fsc->id}}" hidden>
                                         </div>
 
                                     </div>
+
+                                    @if($fsc->fresh_candidate == 1)
                                     <div class="row">
                                         <div class="form-check col-md-12 ">
-                                            <input class="form-check-input"  name="fresh_candidate" value="1" type="checkbox" id="myCheck" onclick="myFunction()">
+                                            <input class="form-check-input"  name="fresh_candidate" value="1" type="checkbox" checked>
                                             <label class="form-check-label"><em style="font-weight: bold; color: green">Click here if you are fresh candidate</em></label>
                                         </div>
                                     </div>
-                                    <div class="row" style="display:none" id="text">
-                                        <div class="col-md-12 form-group"><span style="font-weight: bold"><em>Only for Fresh Candidates</em></span></div>
+                                    <div class="row"  id="text">
                                         <div class="col-md-3 form-group">
                                             <label>Physics</label>
-                                            <input type="text" class="form-control" name="phy" value="{{old('phy')}}">
+                                            <input type="text" class="form-control" name="phy" value="{{$fsc->phy}}">
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label>Chemistry</label>
-                                            <input type="text" class="form-control" name="chem" value="{{old('chem')}}">
+                                            <input type="text" class="form-control" name="chem" value="{{$fsc->chem}}">
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label>Biology</label>
-                                            <input type="text" class="form-control" name="bio" value="{{old('bio')}}">
+                                            <input type="text" class="form-control" name="bio" value="{{$fsc->bio}}">
                                         </div>
                                         <div class="col-md-3 form-group">
                                             <label>Total Marks </label>
-                                            <input type="text" class="form-control" name="total_science" value="{{old('total_science')}}">
+                                            <input type="text" class="form-control" name="total_science" value="{{$fsc->total_science}}">
                                         </div>
 
                                     </div>
+                                    @endif
                                     <div class="row">
                                         <br>
                                     </div>
                                     <div class="row">
-                                        <button class="btn btn-primary">Save & Next</button>
+                                        <button class="btn btn-primary">Update & Next</button>
                                     </div>
 
                                 </form>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\College;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\Jetstream;
 use function GuzzleHttp\Promise\all;
 
@@ -14,7 +16,15 @@ class PersonalInfoController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        return view('users.personalInfo', compact('user'));
+        if(!empty($user->category)){
+            $categories = json_decode($user->category);
+        }
+        else{
+            $categories=[];
+        }
+
+        $colleges = College::all();
+        return view('users.personalInfo', compact('user', 'colleges', 'categories'));
     }
 
     public function edit(Request $request, User $personalInfo)
@@ -26,16 +36,20 @@ class PersonalInfoController extends Controller
     public function update(Request $request, User $personalInfo)
     {
         $user_id = $personalInfo->id;
+        $cate = json_encode($request->category_options);
+        $pref = json_encode($request->preference_select);
+
         $request->validate([
-        'guardian_name' => ['required'],
-        'dob' => ['required'],
-        'domicile' => ['required'],
-        'cnic' => ['required', 'max:13'],
-        'image1' => [''],
+            'image1' => 'mimes:jpeg,jpg,png|required',
         ]);
-        $request->merge([
-            'category' => json_encode($request->category_options),
-        ]);
+        if(!empty($cate) && $cate!='null')
+        {
+            $request->merge(['category' => $cate]);
+        }
+        if(!empty($cate) && $cate!='null') {
+            $request->merge(['preference' => $pref]);
+        }
+
         if ($request->has('image1')) {
             $path = $request->file('image1')->store('', 'public');
             $request->merge(['image' => $path]);
@@ -49,6 +63,9 @@ class PersonalInfoController extends Controller
 
     public function approve(Request $request,$user_id){
         $user = User::find($user_id);
+        $email = $user->email;
+       // dd($email);
+        $user->notify(new \App\Notifications\Approved());
         $user->approved = 1;
         $user->save();
 
@@ -57,8 +74,36 @@ class PersonalInfoController extends Controller
 
     public function profile(Request $request,$user_id){
        $user = User::find($user_id);
-       $category_options = json_decode($user->category);
-       return view('users.profile', compact('user', 'category_options'));
+
+        if(!empty($user->category)  && strtolower($user->category) != 'null'){
+            $category_options = json_decode($user->category);
+        }
+        else{
+            $category_options=[];
+        }
+
+        if(!empty($user->preference) && strtolower($user->preference) != 'null'){
+            $preference_select = json_decode($user->preference);
+            $college_names = DB::table('colleges')->select('colleges')->whereIn('id', $preference_select)->get();
+        }
+        else{
+            $preference_select=[];
+            $college_names = [];
+        }
+
+
+     //$college_names = College::select('colleges')->where('id', 'in' , $preference_select)->get();
+
+      $c_names = '';
+      $count = 1;
+       foreach($college_names as $cn){
+           if(!empty($c_names)){
+               $c_names.=' ';
+           }
+          $c_names.=$count++ . ': ' . $cn->colleges;
+      }
+
+       return view('users.profile', compact('user', 'category_options', 'c_names'));
     }
 
     public function saveEntryTest(Request $request,$user_id){

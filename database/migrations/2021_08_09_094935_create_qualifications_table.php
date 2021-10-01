@@ -22,10 +22,14 @@ class CreateQualificationsTable extends Migration
             $table->string('board')->nullable();
             $table->string('year')->nullable();
             $table->integer('obtained_marks')->nullable();
+            //to check if its matric or fsc
+            $table->string('qual_type')->nullable();
             //these three fields are for fresh candidates only
             $table->integer('phy')->nullable();
             $table->integer('chem')->nullable();
             $table->integer('bio')->nullable();
+            $table->integer('total_science')->nullable();
+            $table->boolean('fresh_candidate')->nullable();
             $table->integer('total_marks')->nullable();
             $table->timestamps();
         });

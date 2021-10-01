@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\College;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Jetstream\Jetstream;
 
-class DashboardController extends Controller
+class CollegeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,26 +17,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-       // $users = User::all();
-
-        $users = QueryBuilder::for(User::class)
-                ->allowedFilters(['name', 'category','cnic' , 'domicile'])
-            ->get();
         $colleges = College::all();
-        $college_count = $colleges->count();
-        /*$users = DB::table('users')->paginate(5);*/
-        $q_approved = $users->where('approved', '=', '1');
-        $q_not_approved = $users->where('approved', '!=', '1');
-        $approved = count($q_approved);
-        $not_approved = count($q_not_approved);
-        $total_users = count($users);
-       return view('dashboard', compact(
-           'users',
-           'approved',
-           'not_approved',
-           'total_users',
-           'college_count',
-       ));
+        return view('college.index', compact('colleges'));
     }
 
     /**
@@ -45,7 +26,7 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -58,7 +39,14 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'colleges' => ['required'],
+        ]);
+        College::create([
+            'colleges' => $request['colleges'],
+        ]);
+
+        return redirect()->back()->with('success', 'Institute Added Successfully');
     }
 
     /**
@@ -101,8 +89,10 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $college = College::find($id);
+        $college->delete();
+        return redirect()->back()->with('success', 'Deleted');
     }
 }

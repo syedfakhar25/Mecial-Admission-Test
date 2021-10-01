@@ -60,13 +60,14 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
+                <a hre></a>
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-fire"></i></span>
+                        <a href="/colleges" class="info-box-icon bg-warning elevation-1"><i class="fas fa-building"></i></a>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Pending</span>
-                            <span class="info-box-number">000</span>
+                            <span class="info-box-text">Institutions</span>
+                            <span class="info-box-number">{{$college_count}}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -82,7 +83,7 @@
                     <div class="row">
                         <br>
                     </div>
-                    <form action="{{route('dashboard.index')}}" method="get">
+                    {{--<form action="{{route('dashboard.index')}}" method="get">
                         <div class="row">
                             <div class="col-md-3">
                                 <input type="text" name="filter[name]" class="form-control" placeholder="Search by Name"/>
@@ -123,7 +124,7 @@
                                 <button type="submit" name="search" class="btn btn-danger">Search</button>
                             </div>
                         </div>
-                    </form>
+                    </form>--}}
 
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
@@ -147,7 +148,7 @@
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table m-0">
+                        <table class="table m-0" id="myTable">
                             <thead>
                             <tr>
                                 <th>S. No</th>
@@ -155,7 +156,7 @@
                                 <th>Father Name</th>
                                 <th>CNIC</th>
                                 <th>Domicile</th>
-                                <th>Profile</th>
+                                {{--<th>Profile</th>--}}
                                 <th>Approved</th>
                             </tr>
                             </thead>
@@ -168,7 +169,7 @@
                                <td>{{$user->guardian_name}}</td>
                                <td>{{$user->cnic}}</td>
                                <td>{{$user->domicile}}</td>
-                               <td><a href="{{route('profile' , $user->id)}}"class="btn btn-primary">Check</a></td>
+                              {{-- <td><a href="{{route('profile' , $user->id)}}"class="btn btn-primary">Check</a></td>--}}
                                @if($user->approved != 1)
                                     <td><a href="{{route('approve' , $user->id)}}" class="btn btn-warning">Approve</a></td>
                                @else
@@ -188,33 +189,20 @@
                     <div class="card card-widget widget-user" >
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header text-white">
-                            <h2 class="widget-user-username text-center text-black-50">
-                                <em style=" border: 2px solid red; border-radius: 25px;
-                                text-shadow: 1px 1px 1px black; font-size: 40px;
-                                ">
-                                    Welcome to AJKMC Admission Test Registration Portal
+                            <h2 class="widget-user-username text-center text-black-50" style="border: 2px solid red; border-radius: 45px">
+                                <em style="text-shadow: 1px 1px 1px black; font-size: 35px;">
+                                    Welcome to Joint Admission Committee GoAJK Nomination 2021
                                 </em>
                             </h2>
                         </div>
                         <div class="row m-auto" >
-                            <a href="" class="btn btn-warning">
-                                <em style=" color: white;
-                                text-shadow: 1px 1px 1px black; font-size: 20px;
-                                ">
-                                 @if(Auth::user()->approved!=1)
-                                        Profile Not Verified Yet
-                                 @else
-                                     Approved
-                                 @endif
-
-                                </em>
-                            </a>
+                          <em style="font-weight:bold; font-size: 20px;">Note: Kindly fill the application carefully and once submitted can not be edited</em>
                         </div>
                         <div>
                             <br>
                         </div>
                         <div class="row m-auto" >
-                            <a href="/personalInfo" class="btn btn-danger">
+                            <a href="{{route('personalInfo.index')}}" class="btn btn-danger">
                                 <em style=" color: white;
                                 text-shadow: 1px 1px 1px black; font-size: 40px;
                                 ">
@@ -228,6 +216,10 @@
             @endif
 
         </div>
-
     </div>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 @endsection

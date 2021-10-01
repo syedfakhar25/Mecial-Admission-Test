@@ -16,9 +16,23 @@ class QualificationController extends Controller
     public function index(Request $request)
     {
         $user_id = Auth::user()->id;
-        return view('qualification.index', [
-            'user_id' => $user_id,
-        ]);
+        $qualifications = Qualification::where('user_id' , '=', $user_id)->get();
+
+        if(count($qualifications)<1){
+            return view('qualification.index', [
+                'user_id' => $user_id,
+            ]);
+        }
+        else{
+            $matric = $qualifications[0];
+            $fsc = $qualifications[1];
+
+            return view('qualification.edit', [
+                'fsc' => $fsc,
+                'matric' => $matric,
+            ]);
+        }
+
     }
 
     /**
@@ -55,6 +69,9 @@ class QualificationController extends Controller
                         'phy' => $request->phy,
                         'chem' => $request->chem,
                         'bio' => $request->bio,
+                        'fresh_candidate' => $request->fresh_candidate,
+                        'qual_type' => $request->qual_type[$count],
+                        'total_science' => $request->total_science,
                         'total_marks' => $request->total_marks[$count],
                     ]);
                 }
@@ -63,6 +80,32 @@ class QualificationController extends Controller
 
         return view('users.entrytest')->with('success', 'Qualification Added Successfully');
 
+    }
+
+    public function updateQualifications(Request $request){
+        for($count=0; $count< count($request->qual_id); $count++){
+            $values = [
+                'exam' => $request->exam[$count],
+                'subject' => $request->subject[$count],
+                'institute' => $request->institute[$count],
+                'board' => $request->board[$count],
+                'year' => $request->year[$count],
+                'obtained_marks' => $request->obtained_marks[$count],
+                'fresh_candidate' => $request->fresh_candidate,
+                'total_marks' => $request->total_marks[$count],
+            ];
+            if($request->qual_type[$count] == 'fsc' && $request->fresh_candidate == 1 ){
+                $values['phy'] = $request->phy;
+                $values['chem'] = $request->chem;
+                $values['bio'] = $request->bio;
+                $values['total_science'] = $request->total_science;
+            }
+
+            $qualification = Qualification::find($request->qual_id[$count]);
+            $qualification->update($values);
+        }
+
+        return view('users.entrytest')->with('success', 'Qualification Added Successfully');
     }
 
     /**
@@ -96,7 +139,7 @@ class QualificationController extends Controller
      */
     public function update(Request $request, Qualification $qualification)
     {
-        //
+        dd($request->all());
     }
 
     /**
