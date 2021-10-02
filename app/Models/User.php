@@ -95,4 +95,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Document::class, 'user_id');
     }
+
+    //relation with appliedstudent
+    public function appliedStudent()
+    {
+        return $this->hasMany(AppliedStudent::class, 'user_id');
+    }
 }

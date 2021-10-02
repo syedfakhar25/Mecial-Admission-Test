@@ -13,4 +13,10 @@ class Admission extends Model
         'admission_title',
         'close_date',
     ];
+
+    //relation with appliedstudent
+    public function appliedStudent()
+    {
+        return $this->hasMany(AppliedStudent::class, 'user_id');
+    }
 }

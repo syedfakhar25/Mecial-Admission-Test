@@ -153,11 +153,11 @@
                             <tr>
                                 <th>S. No</th>
                                 <th>Name</th>
-                                <th>Father Name</th>
                                 <th>CNIC</th>
                                 <th>Domicile</th>
                                 {{--<th>Profile</th>--}}
                                 <th>Approved</th>
+                                <th>Change Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -166,7 +166,6 @@
                             <tr>
                                 <td>{{$i+=1}}</td>
                                <td>{{$user->name}}</td>
-                               <td>{{$user->guardian_name}}</td>
                                <td>{{$user->cnic}}</td>
                                <td>{{$user->domicile}}</td>
                               {{-- <td><a href="{{route('profile' , $user->id)}}"class="btn btn-primary">Check</a></td>--}}
@@ -174,6 +173,15 @@
                                     <td><a href="{{route('approve' , $user->id)}}" class="btn btn-warning">Approve</a></td>
                                @else
                                     <td><span class="text-danger">Approved <i class="fa fa-check"></i></span></td>
+                                @endif
+                                @if($user->appliedstudent[0]->status == 'accepted')
+                                <td class="text-primary">Accepted</td>
+                                @elseif($user->appliedstudent[0]->status == 'rejected')
+                                <td class="text-danger">Rejected</td>
+                                @else
+                                <td><a href="{{route('accept' , $user->id)}}" class="btn btn-success">Accept</a>
+                                    <a href="{{route('reject' , $user->id)}}" class="btn btn-danger">Reject</a>
+                                </td>
                                 @endif
                             </tr>
                             @endforeach
@@ -203,19 +211,32 @@
                         </div>
 
                         <div class="row m-3" >
-                            <div class="info-box col-md-4">
-                                <a class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></a>
+                            @if(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)==0)
+                                <div class="info-box col-md-4">
+                                    <a class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></a>
 
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Update Profile</span>
-                                    <a class="info-box-number">
-                                      click to proceed
-                                    </a>
-                             </div>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Update Profile</span>
+                                        <a class="info-box-number">
+                                          click to proceed
+                                        </a>
+                                    </div>
+                                </div>
+                                @elseif(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)==1)
+                                    <div class="info-box col-md-4">
+                                        <a href="{{route('profile', Auth::user()->id)}}" class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></a>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Check Profile</span>
+                                            <a class="info-box-number">
+                                                click to proceed
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
                                 <!-- /.info-box-content -->
-                            </div>
-                            <div class="info-box col-md-4">
-                                <a class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar"></i></a>
+                            <div  class="info-box col-md-4">
+                                <a href="{{route('applicationstatus')}}" class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar"></i></a>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Application Status</span>
@@ -224,7 +245,7 @@
                                 <!-- /.info-box-content -->
                             </div>
                             <div class="info-box col-md-4">
-                                <a href="{{route('apply')}}" class="info-box-icon bg-success elevation-1"><i class="fas fa-list"></i></a>
+                                <a href="{{route('applystudent.index')}}" class="info-box-icon bg-success elevation-1"><i class="fas fa-list"></i></a>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Apply Now</span>

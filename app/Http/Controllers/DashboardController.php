@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class DashboardController extends Controller
+class   DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +20,11 @@ class DashboardController extends Controller
     {
        // $users = User::all();
 
-        $users = QueryBuilder::for(User::class)
-                ->allowedFilters(['name', 'category','cnic' , 'domicile'])
-            ->get();
+        //$users = User::all();
+        //users who have applied on admission
+
+        $users = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
+       // dd($userA);
         $colleges = College::all();
         $college_count = $colleges->count();
         /*$users = DB::table('users')->paginate(5);*/

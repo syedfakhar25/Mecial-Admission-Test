@@ -133,7 +133,8 @@
                             </p>
                         </a>
                     </li>
-                    @if(Auth::user()->user_type != 'admin')
+
+                    @if(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)==0)
                     <li class="nav-item has-treeview">
                         <a href="/personalInfo"  class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
@@ -182,7 +183,24 @@
                             </p>
                         </a>
                     </li>
-                    @else
+                    @elseif(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)>0)
+                        <li class="nav-item has-treeview">
+                            <a href="{{route('profile' , Auth::user()->id)}}" class="nav-link ">
+                                <i class="nav-icon fas fa-user-check"></i>
+                                <p>
+                                    User Profile
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/challan" class="nav-link ">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Challan Form
+                                </p>
+                            </a>
+                        </li>
+                    @elseif(Auth::user()->user_type == 'admin')
                         <li class="nav-item has-treeview {{ request()->is('/colleges') ? 'active' : '' }}">
                             <a href="/colleges" class="nav-link ">
                                 <i class="nav-icon fas fa-building"></i>

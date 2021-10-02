@@ -39,6 +39,7 @@
                                 <form method="POST" action="{{ route('admissions.store') }}">
                                     @csrf
                                     <div class="row">
+
                                         <div class="col-md-3 form-group">
                                             <label>Admission Title</label>
                                             <input type="text" class="form-control" name="admission_title" value="{{old('admission_title')}}" placeholder="e.g; Admission-2021">
@@ -93,8 +94,9 @@
                                         </table>
                                     </div>
 
+                                </div>
                             </div>
-                            </div>
+
                             <!-- /.card-body -->
                         </div>
 

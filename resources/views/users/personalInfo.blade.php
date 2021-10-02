@@ -192,7 +192,7 @@
                                             <select class="form-control  multiple-select" name="preference_select[]" multiple>
                                                 <option disabled>-- Select Institutes --</option>
                                                 @foreach($colleges as $college)
-                                                <option value="{{$college->id}}" {{ $user->prefrences == $college->id ? 'selected' : '' }}>{{$college->colleges}}</option>
+                                                <option value="{{$college->id}}">{{$college->colleges}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

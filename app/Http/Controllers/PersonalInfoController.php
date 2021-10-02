@@ -65,7 +65,7 @@ class PersonalInfoController extends Controller
     public function approve(Request $request,$user_id){
         $user = User::find($user_id);
         $email = $user->email;
-       // dd($email);
+        //dd($user_id);
         $user->notify(new \App\Notifications\Approved());
         $user->approved = 1;
         $user->save();
@@ -125,13 +125,5 @@ class PersonalInfoController extends Controller
       return view('document.index', compact('user'))->with('success', 'Data Added Successfully!');
     }
 
-    public function apply(Request $request){
-        $admission = Admission::all();
-        return view('users.apply', compact('admission'));
-    }
-
-    public function applied(Request $request){
-       dd('idr a gya');
-    }
 
 }

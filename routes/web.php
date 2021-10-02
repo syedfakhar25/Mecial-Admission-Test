@@ -27,12 +27,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('personalInfo', PersonalInfoController::class);
     //approve a user
     Route::get('/approve/{user_id}', [PersonalInfoController::class, 'approve'])->name('approve');
+    //accept a student
+    Route::get('/accept/{user_id}', [\App\Http\Controllers\AppliedStudentController::class, 'accept'])->name('accept');
+    //reject a student
+    Route::get('/reject/{user_id}', [\App\Http\Controllers\AppliedStudentController::class, 'reject'])->name('reject');
 
-    //user applies for admission VIEW
-    Route::get('/apply', [PersonalInfoController::class, 'apply'])->name('apply');
-
-    //user applies for admission STORE
-    Route::put('/applied', [PersonalInfoController::class, 'applied'])->name('applied');
     //view profile
     Route::get('/profile/{user_id}', [PersonalInfoController::class, 'profile'])->name('profile');
     //save mcat/sat score
@@ -43,6 +42,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/update_qualifications/', [\App\Http\Controllers\QualificationController::class, 'updateQualifications'])->name('update_qualifications');
 
     Route::resource('documents', \App\Http\Controllers\DocumentController::class);
+
+    //routes for student applying on an admission
+    Route::resource('applystudent', \App\Http\Controllers\AppliedStudentController::class);
+
+    Route::get('/applicationstatus', [\App\Http\Controllers\AppliedStudentController::class, 'ApplicationStatus'])->name('applicationstatus');
 
     Route::get('entrytest', function () {
         return view('users.entrytest');
