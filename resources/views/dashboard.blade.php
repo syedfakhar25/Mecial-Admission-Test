@@ -203,8 +203,15 @@
                                 </em>
                             </h2>
                         </div>
-                        <div class="row m-auto" >
-                          <em style="font-weight:bold; font-size: 20px;">Note: Kindly update profile first, fill it carefully then come to apply once submitted can not be edited</em>
+                        <div class="row" style="margin-top: -40px" >
+                            <ul>
+                                <li style="font-weight: bold">Read the instructions carefully, <em style="font-weight: bold; color: red">Follow these Steps</em></li>
+                                <li>Update your profile first, fill personal information, qualification, entry test & documents section</li>
+                                <li>After filling all the information, come to second step and apply on admission in "Apply Now" section</li>
+                                <li>You will not be able to change any information after applying on admission</li>
+                                <li>So, fill the information carefully and double check it before applying</li>
+                                <li>After applying, print profile and challan submit fee in bank and send document</li>
+                            </ul>
                         </div>
                         <div>
                             <br>
@@ -213,12 +220,12 @@
                         <div class="row m-3" >
                             @if(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)==0)
                                 <div class="info-box col-md-4">
-                                    <a class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></a>
+                                    <a href="{{route('personalInfo.index')}}" class="info-box-icon bg-info elevation-1"><i class="fas fa-user"></i></a>
 
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Update Profile</span>
-                                        <a class="info-box-number">
-                                          click to proceed
+                                        <span class="info-box-text">Step 1</span>
+                                        <a href="{{route('personalInfo.index')}}" class="info-box-number">
+                                          Update Profile
                                         </a>
                                     </div>
                                 </div>
@@ -235,20 +242,20 @@
                                     </div>
                                 @endif
                                 <!-- /.info-box-content -->
+                            <div class="info-box col-md-4">
+                                <a href="{{route('applystudent.index')}}" class="info-box-icon bg-success elevation-1"><i class="fas fa-list"></i></a>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Step 2</span>
+                                    <a href="{{route('applystudent.index')}}" class="info-box-number">Apply Now</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
                             <div  class="info-box col-md-4">
                                 <a href="{{route('applicationstatus')}}" class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar"></i></a>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Application Status</span>
-                                    <span class="info-box-number">click to proceed</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <div class="info-box col-md-4">
-                                <a href="{{route('applystudent.index')}}" class="info-box-icon bg-success elevation-1"><i class="fas fa-list"></i></a>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Apply Now</span>
                                     <span class="info-box-number">click to proceed</span>
                                 </div>
                                 <!-- /.info-box-content -->

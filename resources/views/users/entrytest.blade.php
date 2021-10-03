@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Center:</label>
-                                                <input class="form-control" type="text" name="test_center" value="{{Auth::user()->test_center}} placeholder="center name">
+                                                <input class="form-control" type="text" name="test_center" value="{{Auth::user()->test_center}}" placeholder="center name">
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Marks Obtained:</label>

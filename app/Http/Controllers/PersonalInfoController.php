@@ -108,6 +108,42 @@ class PersonalInfoController extends Controller
        return view('users.profile', compact('user', 'category_options', 'c_names'));
     }
 
+    //print user profile
+    public function printProfile(Request $request,$user_id){
+        //if()
+       $user = User::find($user_id);
+
+        if(!empty($user->category)  && strtolower($user->category) != 'null'){
+            $category_options = json_decode($user->category);
+        }
+        else{
+            $category_options=[];
+        }
+
+        if(!empty($user->preference) && strtolower($user->preference) != 'null'){
+            $preference_select = json_decode($user->preference);
+            $college_names = DB::table('colleges')->select('colleges')->whereIn('id', $preference_select)->get();
+        }
+        else{
+            $preference_select=[];
+            $college_names = [];
+        }
+
+
+     //$college_names = College::select('colleges')->where('id', 'in' , $preference_select)->get();
+
+      $c_names = '';
+      $count = 1;
+       foreach($college_names as $cn){
+           if(!empty($c_names)){
+               $c_names.=' ';
+           }
+          $c_names.=$count++ . ': ' . $cn->colleges;
+      }
+
+       return view('users.profile-print', compact('user', 'category_options', 'c_names'));
+    }
+
     public function saveEntryTest(Request $request,$user_id){
      $user = User::find($user_id);
      //for SAT

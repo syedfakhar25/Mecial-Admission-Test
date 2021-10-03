@@ -3,20 +3,20 @@
     User Profile
 @endsection
 @section('content')
-
+    <body onload="window.print()">
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <a class="btn btn-danger text-white" onclick="window.print()">Print</a>
+
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- Main content -->
-        <section class="content">
+        <section class="content" onload="window.print();">
             <div class="container-fluid">
                 <style>
                     h6{
@@ -280,11 +280,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h5 style="font-weight: bold"> Prefrences</h5>
-                        <span style="font-weight: bold;"> {{$c_names}}</span>
+                        <span style="font-weight: bold; color: red"><em class="text-danger">{{$c_names}}</em></span>
                     </div>
                 </div>
 
             </div>
         </section>
+
+
+    </div>
+    </body>
 
 @endsection

@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     //view profile
     Route::get('/profile/{user_id}', [PersonalInfoController::class, 'profile'])->name('profile');
+    //print profile
+    Route::get('/print/{user_id}', [PersonalInfoController::class, 'printProfile'])->name('print');
+
     //save mcat/sat score
     Route::put('/entrytest/{user_id}', [PersonalInfoController::class, 'saveEntryTest'])->name('entrytest');
     Route::get('/entrytest/{user_id}', [PersonalInfoController::class, 'saveEntryTest'])->name('entrytest');
