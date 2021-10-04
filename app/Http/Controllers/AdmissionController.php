@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdmissionController extends Controller
 {
@@ -14,6 +15,9 @@ class AdmissionController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->user_type != 'admin'){
+            return redirect()->route('dashboard.index');
+        }
         $admissions = Admission::all();
         return view('admissions.index', compact('admissions'));
     }

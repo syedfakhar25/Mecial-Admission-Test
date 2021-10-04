@@ -85,7 +85,7 @@
                                                         <form action="{{route('admissions.destroy', $admission->id)}}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="fa fa-trash text-danger" style="border-radius: 5px"></button>
+                                                            <button type="submit" class="btn  text-danger" style="border-radius: 5px"><i class="fa fa-trash"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>

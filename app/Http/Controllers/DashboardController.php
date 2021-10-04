@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admission;
 use App\Models\College;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -22,26 +24,61 @@ class   DashboardController extends Controller
 
         //$users = User::all();
         //users who have applied on admission
+        if(Auth::user()->user_type == 'admin'){
+            $users = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
+            // dd($userA);
+            $colleges = College::all();
+            $admissions = Admission::all();
+            $total_admissions = count($admissions);
+            $college_count = $colleges->count();
 
-        $users = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
-       // dd($userA);
-        $colleges = College::all();
-        $college_count = $colleges->count();
-        /*$users = DB::table('users')->paginate(5);*/
-        $q_approved = $users->where('approved', '=', '1');
-        $q_not_approved = $users->where('approved', '!=', '1');
-        $approved = count($q_approved);
-        $not_approved = count($q_not_approved);
-        $total_users = count($users);
-       return view('dashboard', compact(
-           'users',
-           'approved',
-           'not_approved',
-           'total_users',
-           'college_count',
+            // to get current admission name
+            $admission_first =  Admission::first();
+            $current_admission_title = $admission_first->admission_title;
+            $q_approved = $users->where('approved', '=', '1');
+            $q_not_approved = $users->where('approved', '!=', '1');
+            $approved = count($q_approved);
+            $not_approved = count($q_not_approved);
+            $total_users = count($users);
+
+            //to get accepted rejected stats
+            $a = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->where('applied_students.status','accepted')->get();
+            $r = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->where('applied_students.status','rejected')->get();
+            $p = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->where('applied_students.status',NULL)->get();
+            $accepted = count($a);
+            $rejected = count($r);
+            $pending = count($p);
+
+            return view('dashboard', compact(
+                'users',
+                'approved',
+                'not_approved',
+                'total_users',
+                'college_count',
+                'total_admissions',
+                'current_admission_title',
+                'accepted',
+                'rejected',
+                'pending'
        ));
+        }
+        else{
+            return  view('dashboard-user');
+        }
+
     }
 
+    //manage all students
+    public function allStudents(Request $request){
+        if(Auth::user()->user_type!='admin'){
+            return redirect()->route('dashboard');
+        }
+        $users = User::select('users.*')->join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
+       // dd($users);
+        return view('all-students', compact(
+            'users'
+        ));
+    }
     /**
      * Show the form for creating a new resource.
      *

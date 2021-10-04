@@ -41,6 +41,7 @@
                                 @endif
 
                                 <h3 class="profile-username text-center"><em><b>{{$user->name}}</b></em></h3>
+                                    <div class="text-center" style="font-weight: bold"><em>Aggregate: <u>{{number_format($aggregate, 4)}}</u></em></span>
                                 @if (session('success'))
                                     <div class="alert alert-success" role="alert">
                                         {{ session('success') }}
@@ -138,7 +139,18 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- Qualifications-->
-                        <div class="card card-primary">
+                        @if(count($user->qualification)==0)
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Qualifications</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    No Qualification Added
+                                </div>
+                            </div>
+                        @else
+                            <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Qualifications</h3>
                             </div>
@@ -166,6 +178,11 @@
                                             <td>{{$qual->year}}</td>
                                             <td>{{$qual->obtained_marks}}</td>
                                             <td>{{$qual->total_marks}}</td>
+                                            @if($qual->qual_type == 'matric')
+
+                                            @elseif($qual->qual_type == 'fsc')
+                                            @else
+                                            @endif
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -177,6 +194,8 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        @endif
+
                         <!-- Admission Test-->
                         <div class="card card-primary">
                             <div class="card-header">

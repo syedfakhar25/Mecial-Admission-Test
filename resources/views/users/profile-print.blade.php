@@ -4,6 +4,11 @@
 @endsection
 @section('content')
     <body onload="window.print()">
+    <style>
+        @media print {
+            .pagebreak { page-break-before: always; } /* page-break-after works, as well */
+        }
+    </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -46,7 +51,7 @@
                         <div class="col-md-12">
                             <center>
                                 <h6 style=""> Aggregate % with MDCAT </h6>
-                                <h6 style="font-weight: bold"> ___________________ </h6>
+                                <em style="font-weight: bold"><u>{{number_format($aggregate, 4)}}</u> </em>
                             </center>
                         </div>
                     </div>
@@ -54,7 +59,7 @@
                 <div class="row">
                     <br><br>
                 </div>
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-9">
                         <h6 style="font-weight: bold"> Part 1 &nbsp &nbsp Selected Categories </h6>
                         <h6 style="font-weight: bold">
@@ -90,7 +95,12 @@
                     <div class="col-md-12">
                         <h6 style="font-weight: bold"> Part 2 Personal Information</h6>
                         <h6 style="">
-                            1. Hafiz-e-Quran
+                            1. Hafiz-e-Quran :
+                            @if($user->hafiz_quran ==1)
+                                Yes
+                            @else
+                                No
+                            @endif
                         </h6>
                     </div>
 
@@ -245,7 +255,7 @@
                     </div>
                 </div>
 
-                <div class="row"><br><br></div>
+                <div class="pagebreak"></div>
                 <div class="row">
                     <div class="col-md-12">
                         <h6 style="font-weight: bold"> Part 5 Solemn Affirmation by the Appicant</h6>

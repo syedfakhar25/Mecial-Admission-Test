@@ -15,6 +15,9 @@ class QualificationController extends Controller
      */
     public function index(Request $request)
     {
+        if(Auth::user()->user_type != 'user' || count(Auth::user()->appliedStudent)>0){
+            return redirect()->route('dashboard.index');
+        }
         $user_id = Auth::user()->id;
         $qualifications = Qualification::where('user_id' , '=', $user_id)->get();
 

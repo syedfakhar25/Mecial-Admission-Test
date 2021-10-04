@@ -218,6 +218,15 @@
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item has-treeview {{ request()->is('allStudents') ? 'active' : '' }}">
+                            <a href="{{route('allStudents')}}" class="nav-link ">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Manage Students
+                                </p>
+                            </a>
+                        </li>
                     @endif
 
                     <li class="nav-item has-treeview ">

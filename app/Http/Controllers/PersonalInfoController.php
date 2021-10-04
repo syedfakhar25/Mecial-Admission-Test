@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\College;
+use App\Models\Qualification;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\Jetstream;
+use phpDocumentor\Reflection\Types\Null_;
 use function GuzzleHttp\Promise\all;
 
 class PersonalInfoController extends Controller
@@ -17,6 +19,9 @@ class PersonalInfoController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        if(Auth::user()->user_type != 'user' || count($user->appliedStudent)>0){
+            return redirect()->route('dashboard.index');
+        }
         if(!empty($user->category)){
             $categories = json_decode($user->category);
         }
@@ -36,6 +41,10 @@ class PersonalInfoController extends Controller
 
     public function update(Request $request, User $personalInfo)
     {
+        $user = Auth::user();
+        if(Auth::user()->user_type != 'user' || count($user->appliedStudent)>0){
+            return redirect()->route('dashboard.index');
+        }
         $user_id = $personalInfo->id;
         $cate = json_encode($request->category_options);
         $pref = json_encode($request->preference_select);
@@ -74,15 +83,33 @@ class PersonalInfoController extends Controller
     }
 
     public function profile(Request $request,$user_id){
-        //if()
-       $user = User::find($user_id);
 
+       $user = User::find($user_id);
+       //dd($user);
+        if($user->user_type != 'user'|| $user->id!=Auth::user()->id){
+            return redirect()->route('dashboard.index');
+        }
         if(!empty($user->category)  && strtolower($user->category) != 'null'){
             $category_options = json_decode($user->category);
         }
         else{
             $category_options=[];
         }
+        //Aggregate Calculations
+        $matric = Qualification::where('user_id', $user_id)->where('qual_type','matric')->get();
+        $fsc = Qualification::where('user_id', $user_id)->where('qual_type','fsc')->get();
+        $entry_test_marks = $user->entry_marks;
+        $entry_percentage = ($entry_test_marks/210)*100;
+        $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
+        $fsc_percentage = 0;
+        //if fsc marks are null calculate from subject marks
+        if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
+            $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);
+        }
+        else{
+            $fsc_percentage = ($fsc[0]->obtained_marks/1100)*100;
+        }
+        $aggregate =(($matric_percentage/100)*10)+(($fsc_percentage/100)*40)+(($entry_percentage/100)*50);
 
         if(!empty($user->preference) && strtolower($user->preference) != 'null'){
             $preference_select = json_decode($user->preference);
@@ -105,20 +132,43 @@ class PersonalInfoController extends Controller
           $c_names.=$count++ . ': ' . $cn->colleges;
       }
 
-       return view('users.profile', compact('user', 'category_options', 'c_names'));
+       return view('users.profile', compact(
+           'user',
+           'category_options',
+           'c_names',
+            'matric',
+           'fsc',
+           'aggregate'
+       ));
     }
 
     //print user profile
     public function printProfile(Request $request,$user_id){
-        //if()
        $user = User::find($user_id);
-
+        if($user->user_type != 'user' || $user->id!=Auth::user()->id){
+            return redirect()->route('dashboard.index');
+        }
         if(!empty($user->category)  && strtolower($user->category) != 'null'){
             $category_options = json_decode($user->category);
         }
         else{
             $category_options=[];
         }
+        //Aggregate Calculations
+        $matric = Qualification::where('user_id', $user_id)->where('qual_type','matric')->get();
+        $fsc = Qualification::where('user_id', $user_id)->where('qual_type','fsc')->get();
+        $entry_test_marks = $user->entry_marks;
+        $entry_percentage = ($entry_test_marks/210)*100;
+        $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
+        $fsc_percentage = 0;
+        //if fsc marks are null calculate from subject marks
+        if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
+            $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);
+        }
+        else{
+            $fsc_percentage = ($fsc[0]->obtained_marks/1100)*100;
+        }
+        $aggregate =(($matric_percentage/100)*10)+(($fsc_percentage/100)*40)+(($entry_percentage/100)*50);
 
         if(!empty($user->preference) && strtolower($user->preference) != 'null'){
             $preference_select = json_decode($user->preference);
@@ -141,11 +191,14 @@ class PersonalInfoController extends Controller
           $c_names.=$count++ . ': ' . $cn->colleges;
       }
 
-       return view('users.profile-print', compact('user', 'category_options', 'c_names'));
+       return view('users.profile-print', compact('user', 'category_options', 'c_names', 'aggregate'));
     }
 
     public function saveEntryTest(Request $request,$user_id){
      $user = User::find($user_id);
+     if($user->user_type != 'user' || count($user->appliedStudent)>0 || $user->id!=Auth::user()->id){
+            return redirect()->route('dashboard.index');
+     }
      //for SAT
      $user->chem = $request->chem;
      $user->physics = $request->physics;

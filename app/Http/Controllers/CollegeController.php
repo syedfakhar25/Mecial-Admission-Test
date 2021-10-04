@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\College;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
@@ -17,6 +18,9 @@ class CollegeController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->user_type != 'admin'){
+            return redirect()->route('dashboard.index');
+        }
         $colleges = College::all();
         return view('college.index', compact('colleges'));
     }

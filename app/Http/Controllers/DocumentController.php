@@ -16,6 +16,9 @@ class DocumentController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
+        if(Auth::user()->user_type != 'user' || count(Auth::user()->appliedStudent)>0){
+            return redirect()->route('dashboard.index');
+        }
         $documents = Document::where('user_id' , '=', $user_id)->get();
 
         if(empty($documents[0])){
@@ -45,6 +48,9 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
+        if(Auth::user()->user_type != 'user' || count(Auth::user()->appliedStudent)>0){
+            return redirect()->route('dashboard.index');
+        }
         $request->validate([
             'matric1' => ['required','mimes:jpg,bmp,png'],
             'fsc1' => ['required','mimes:jpg,bmp,png'],
@@ -121,6 +127,9 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(Auth::user()->user_type != 'user' || count(Auth::user()->appliedStudent)>0){
+            return redirect()->route('dashboard.index');
+        }
         $request->validate([
             'matric1' => ['required','mimes:jpg,bmp,png'],
             'fsc1' => ['required','mimes:jpg,bmp,png'],
