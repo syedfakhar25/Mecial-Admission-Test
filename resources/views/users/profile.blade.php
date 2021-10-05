@@ -41,7 +41,8 @@
                                 @endif
 
                                 <h3 class="profile-username text-center"><em><b>{{$user->name}}</b></em></h3>
-                                    <div class="text-center" style="font-weight: bold"><em>Aggregate: <u>{{number_format($aggregate, 4)}}</u></em></span>
+                                    <div class="text-center" style="font-weight: bold"><em>Aggregate: <u>{{number_format($aggregate, 4)}}</u></em></div>
+                                    <div class="text-center" style="font-weight: bold; color: red"><em>Note: Check your profile, if anything is missing update it then <a href="{{route('dashboard.index')}}">Apply Here</a></em></div>
                                 @if (session('success'))
                                     <div class="alert alert-success" role="alert">
                                         {{ session('success') }}

@@ -27,7 +27,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="cnic" value="{{ __('CNIC') }}" />
-                <x-jet-input id="cnic" class="block mt-1 w-full" type="text" name="cnic" :value="old('cnic')" required placeholder="e.g; 8220312345678"/>
+                <x-jet-input id="cnic" class="block mt-1 w-full" type="text" name="cnic" :value="old('cnic')" required placeholder=" without dashes e.g; 8220312345678"/>
             </div>
 
             <div class="mt-4">
@@ -51,7 +51,8 @@
 
             <div class="mt-4">
                 <label>Entry Test Marks</label> <span style="color:red;"> <em>(must not be less than 65%)</em></span>
-                <x-jet-input id="entry_marks" class="block mt-1 w-full" type="text" name="entry_marks" :value="old('entry_marks')" required />
+                <h6 style="font-weight: bold; color: blue">(if your test type is SAT leave this option empty)</h6>
+                <x-jet-input id="entry_marks" class="block mt-1 w-full" type="text" name="entry_marks" :value="old('entry_marks')" />
             </div>
 
             <div class="mt-4">

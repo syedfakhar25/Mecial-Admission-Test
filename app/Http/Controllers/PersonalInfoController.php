@@ -98,10 +98,21 @@ class PersonalInfoController extends Controller
         //Aggregate Calculations
         $matric = Qualification::where('user_id', $user_id)->where('qual_type','matric')->get();
         $fsc = Qualification::where('user_id', $user_id)->where('qual_type','fsc')->get();
-        $entry_test_marks = $user->entry_marks;
-        $entry_percentage = ($entry_test_marks/210)*100;
+        $entry_test_marks = 0;
+
+        //first check entry test is SAT or MCAT
+        if($user->test_type == 'mcat'){
+            $entry_test_marks = $user->entry_marks;
+            $entry_percentage = ($entry_test_marks/210)*100;
+        }
+        elseif($user->test_type == 'sat'){
+            $entry_test_marks = $user->chem + $user->bio +$user->physics;
+            $entry_percentage = ($entry_test_marks/2400)*100;
+        }
+
         $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
         $fsc_percentage = 0;
+
         //if fsc marks are null calculate from subject marks
         if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
             $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);

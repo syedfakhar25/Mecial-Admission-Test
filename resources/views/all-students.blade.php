@@ -104,11 +104,11 @@
                                <td><a href="{{route('profile' , $user->id)}}"class="btn btn-primary">Check</a></td>
                                 @foreach($user->appliedStudent as $app)
                                 @if($app->status == 'accepted')
-                                <td class="text-primary">Accepted</td>
+                                <td class="text-success"><em style="font-weight: bold">Accepted</em></td>
                                 @elseif($app->status == 'rejected')
-                                <td class="text-danger">Rejected</td>
+                                <td class="text-danger"><em style="font-weight: bold">Rejected</em></td>
                                 @else
-                                <td><a href="{{route('accept' , $user->id)}}" class="btn btn-success">Accept</a>
+                                <td><a href="{{route('accept' , $user->id)}}" class="btn btn-primary">Accept</a>
                                     <a href="{{route('reject' , $user->id)}}" class="btn btn-danger">Reject</a>
                                 </td>
                                 @endif
