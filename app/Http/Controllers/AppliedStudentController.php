@@ -9,7 +9,7 @@ use Carbon\Traits\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AppliedStudentController extends Controller
+class   AppliedStudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,15 +50,23 @@ class AppliedStudentController extends Controller
     {
         $request->validate([
             'admission_title' =>['required'],
+            'challan1' =>['required','mimes:jpg,bmp,png'],
         ]);
+
         $admission_id = $request->admission_title; //this admission title is basically ID coming from View
         $user_id = Auth::user()->id;
         $apply_date = Carbon::now(); //tp get current date
+
+        if ($request->has('challan1')) {
+            $path = $request->file('challan1')->store('', 'public');
+            $request->merge(['challan' => $path]);
+        }
 
         $c = AppliedStudent::create([
             'admission_id' => $admission_id,
             'user_id' => $user_id,
             'apply_date' => $apply_date,
+            'challan' => $request->challan,
         ]);
 
         return redirect()->route('applicationstatus');

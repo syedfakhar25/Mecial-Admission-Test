@@ -18,22 +18,26 @@
                     <!-- Widget: user widget style 1 -->
                     <div class="card card-widget widget-user" >
                         <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header text-white">
-                            <h2 class="widget-user-username text-center text-black-50" style="border: 2px solid red; border-radius: 45px">
-                                <em style="text-shadow: 1px 1px 1px black; font-size: 35px;">
-                                    Welcome to Joint Admission Committee GoAJK Nomination 2021
-                                </em>
-                            </h2>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="text-center text-black-50" style="border: 2px solid red; border-radius: 45px">
+                                    <em style="text-shadow: 1px 1px 1px black; font-size: 35px;">
+                                        Welcome to Joint Admission Committee GoAJK Nomination 2021
+                                    </em>
+                                </h2>
+                            </div>
                         </div>
-                        <div class="row" style="margin-top: -40px" >
-                            <ul>
-                                <li style="font-weight: bold">Read the instructions carefully, <em style="font-weight: bold; color: red">Follow these Steps</em></li>
-                                <li>Update your profile first, fill personal information, qualification, entry test & documents section</li>
-                                <li>After filling all the information, come to second step and apply on admission in "Apply Now" section</li>
-                                <li>You will not be able to change any information after applying on admission</li>
-                                <li>So, fill the information carefully and double check it before applying</li>
-                                <li>After applying, print profile and challan submit fee in bank and send document</li>
-                            </ul>
+                        <div class="row" style="padding-top: 20px" >
+                            <div class="col-md-12">
+                                <ul>
+                                    <li style="font-weight: bold">Read the instructions carefully, <em style="font-weight: bold; color: red">Follow these Steps</em></li>
+                                    <li>Update your profile first, fill personal information, qualification, entry test & documents section</li>
+                                    <li>After filling all the information, come to second step and apply on admission in "Apply Now" section</li>
+                                    <li>You will not be able to change any information after applying on admission</li>
+                                    <li>So, fill the information carefully and double check it before applying</li>
+                                    <li>After adding information, print challan, submit fee and upload picture of challan then APPLY</li>
+                                </ul>
+                            </div>
                         </div>
                         <div>
                             <br>

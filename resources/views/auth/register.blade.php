@@ -26,8 +26,8 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="cnic" value="{{ __('CNIC') }}" />
-                <x-jet-input id="cnic" class="block mt-1 w-full" type="text" name="cnic" :value="old('cnic')" required placeholder=" without dashes e.g; 8220312345678"/>
+                <x-jet-label  for="cnic" value="{{ __('CNIC') }}" />
+                <x-jet-input id="cnic" class="block mt-1 w-full cnic_mask" type="text" name="cnic" :value="old('cnic')" required placeholder=" e.g; 8220312345678"/>
             </div>
 
             <div class="mt-4">
@@ -94,3 +94,11 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.cnic_mask').mask('00000-0000000-0');
+    });
+</script>

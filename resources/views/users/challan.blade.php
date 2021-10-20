@@ -40,7 +40,7 @@
                         <div class="row">
                             <div class="col-md-3 text-left" style="padding-left: 50px"><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/AzadKashmirSeal.png" alt="img" height="80"></div>
                             <div class="col-md-6 text-center"><h4>Depositor Receipt (Customer Copy)</h4></div>
-                            <div class="col-md-3 text-right" style="padding-right: 50px;"><img src="https://upload.wikimedia.org/wikipedia/en/4/42/MCB_Bank_Limited_logo.png" alt="img" height="80"></div>
+                            <div class="col-md-3 text-right" style="padding-right: 50px;"><img src="https://www.abl.com/src/uploads/2020/11/Allied-Bank-Logo1.png" alt="img" height="80"></div>
                         </div>
 
                         <div class="row"><br></div>
@@ -74,7 +74,10 @@
 
                         <div class="row"><br></div>
                         <div class="row">
-                            <div class="col-md-12 text-right" style="padding-right: 50px; font-size: 20px;">
+                            <div class="col-md-6" style="padding-left: 50px; font-size: 20px;">
+                                <b>Account No: </b> &nbsp; &nbsp;  <u><b>00100265520700</b></u>
+                            </div>
+                            <div class="col-md-6 text-right" style="padding-right: 50px; font-size: 20px;">
                                 <b>Date </b> &nbsp; &nbsp;  <u><b>{{date('d-m-y')}}</b></u>
                             </div>
                         </div>
@@ -112,7 +115,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center" style="padding-right: 50px; font-size: 20px;">
-                                <b>Amount in words </b> &nbsp; &nbsp;  <u><b>One thousand one hundred and fifty rupees</b></u>
+                                <b>Amount in words </b> &nbsp; &nbsp;  <u><b>Three thousand one hundred and seventy rupees only</b></u>
                             </div>
                         </div>
                         <div class="row">
@@ -134,7 +137,7 @@
                         <div class="row">
                             <div class="col-md-3 text-left" style="padding-left: 50px"><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/AzadKashmirSeal.png" alt="img" height="80"></div>
                             <div class="col-md-6 text-center"><h4>Depositor Receipt (Bank Copy)</h4></div>
-                            <div class="col-md-3 text-right" style="padding-right: 50px;"><img src="https://upload.wikimedia.org/wikipedia/en/4/42/MCB_Bank_Limited_logo.png" alt="img" height="80"></div>
+                            <div class="col-md-3 text-right" style="padding-right: 50px;"><img src="https://www.abl.com/src/uploads/2020/11/Allied-Bank-Logo1.png" alt="img" height="80"></div>
                         </div>
 
                         <div class="row"><br></div>
@@ -168,7 +171,10 @@
 
                         <div class="row"><br></div>
                         <div class="row">
-                            <div class="col-md-12 text-right" style="padding-right: 50px; font-size: 20px;">
+                            <div class="col-md-6" style="padding-left: 50px; font-size: 20px;">
+                                <b>Account No: </b> &nbsp; &nbsp;  <u><b>00100265520700</b></u>
+                            </div>
+                            <div class="col-md-6 text-right" style="padding-right: 50px; font-size: 20px;">
                                 <b>Date </b> &nbsp; &nbsp;  <u><b>{{date('d-m-y')}}</b></u>
                             </div>
                         </div>
@@ -206,7 +212,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-center" style="padding-right: 50px; font-size: 20px;">
-                                <b>Amount in words </b> &nbsp; &nbsp;  <u><b>One thousand one hundred and fifty rupees</b></u>
+                                <b>Amount in words </b> &nbsp; &nbsp;  <u><b>Three thousand one hundred and seventy rupees only</b></u>
                             </div>
                         </div>
                         <div class="row">

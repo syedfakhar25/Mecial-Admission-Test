@@ -75,8 +75,14 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">PRC (Not Applicable for Refugees 1947/89)</label>
+                                                <label class="form-label" for="customFile">PRC (Upload Refugee Card for Refugees 1947/89)</label>
                                                 <input type="file" class="form-control" name="prc1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">MCAT Result</label>
+                                                <input type="file" class="form-control" name="mcat_result1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

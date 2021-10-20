@@ -13,6 +13,7 @@ class AppliedStudent extends Model
       'admission_id',
       'user_id',
       'status',
+      'challan',
       'status_update_date',
       'apply_date',
     ];

@@ -42,7 +42,9 @@
 
                                 <h3 class="profile-username text-center"><em><b>{{$user->name}}</b></em></h3>
                                     <div class="text-center" style="font-weight: bold"><em>Aggregate: <u>{{number_format($aggregate, 4)}}</u></em></div>
-                                    <div class="text-center" style="font-weight: bold; color: red"><em>Note: Check your profile, if anything is missing update it then <a href="{{route('dashboard.index')}}">Apply Here</a></em></div>
+                                    @if(Auth::user()->user_type == 'user')
+                                        <div class="text-center" style="font-weight: bold; color: red"><em>Note: Check your profile, if anything is missing update it then <a href="{{route('dashboard.index')}}">Apply Here</a></em></div>
+                                    @endif
                                 @if (session('success'))
                                     <div class="alert alert-success" role="alert">
                                         {{ session('success') }}
@@ -260,9 +262,73 @@
                                 </div>
                             </div>
                         </div>
+
+                        {{--prefrences--}}
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Documents</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <span style="font-weight: bold;">
+                                            Matric
+                                            <img id="imageZoom" class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->matric)}}" alt="image" height="">
+                                        </span>
+                                        <br>
+                                        <hr width="100%">
+                                        <span style="font-weight: bold;">
+                                            FSC/A levels
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->fsc)}}" alt="image" height="">
+                                        </span>
+                                        <br>
+                                        <hr width="100%">
+                                        <span style="font-weight: bold;">
+                                            CNIC
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}" alt="image" height="">
+                                        </span>
+                                        <br>
+                                        <hr width="100%">
+                                        <span style="font-weight: bold;">
+                                            Domicile
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->domicile)}}" alt="image" height="">
+                                        </span>
+                                        <br>
+                                        <hr width="100%">
+                                        <span style="font-weight: bold;">
+                                            PRC
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}" alt="image" height="">
+                                        </span>
+                                        <br>
+                                        <hr width="100%">
+                                        <span style="font-weight: bold;">
+                                            State Subject
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->state_subject)}}" alt="image" height="">
+                                        </span>
+                                        <br>
+                                        <hr width="100%">
+                                        <span style="font-weight: bold;">
+                                            Signature
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->signature)}}" alt="image" height="">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+    </div>
+    <script>
 
+    </script>
 @endsection

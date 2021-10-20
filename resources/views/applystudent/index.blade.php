@@ -48,7 +48,7 @@
                                     <div class="card-body">
                                         <div class="row"><span style="font-weight: bold; color: red"><em>Once applied you will not be able to update anything</em></span></div>
                                         <div class="row"><hr width="100%"></div>
-                                        <form method="POST" action="{{route('applystudent.store')}}">
+                                        <form method="POST" action="{{route('applystudent.store')}}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-4 form-group">
@@ -59,6 +59,10 @@
                                                             <option value="{{$adm->id}}">{{$adm->admission_title}}</option>
                                                         @endforeach
                                                     </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label >Upload Challan Image</label>
+                                                    <input type="file" class="form-control" name="challan1" />
                                                 </div>
                                                 <div class="col-md-4 form-group">
                                                     <label>Close Date:</label>

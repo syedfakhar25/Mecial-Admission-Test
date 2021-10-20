@@ -86,9 +86,16 @@
                             <thead>
                             <tr>
                                 <th>S. No</th>
+                                <th>Roll No</th>
                                 <th>Name</th>
+                                <th>Father/Guardian Name</th>
                                 <th>CNIC</th>
                                 <th>Domicile</th>
+                                <th>MCAT/SATMarks</th>
+                                <th>Hafiz-e-Quran</th>
+                                <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Landline</th>
                                 <th>Profile</th>
                                 <th>Change Status</th>
                             </tr>
@@ -98,9 +105,28 @@
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$i+=1}}</td>
+                                <td>{{$user->roll_no}}</td>
                                <td>{{$user->name}}</td>
+                               <td>{{$user->guardian_name}}</td>
                                <td>{{$user->cnic}}</td>
                                <td>{{$user->domicile}}</td>
+                               <td>
+                                   @if($user->test_type=='mcat')
+                                       {{$user->entry_marks}}
+                                   @elseif($user->test_type=='sat')
+                                        Chem: {{$user->chem}} | Bio: {{$user->bio}} | Physics: {{$user->physics}}
+                                   @endif
+                               </td>
+                               <td>
+                                    @if($user->hafiz_quran == 1)
+                                        Hafiz-e-Quran
+                                    @else
+                                        N/A
+                                    @endif
+                               </td>
+                                <td>{{$user->gender}}</td>
+                                <td>{{$user->mobile}}</td>
+                                <td>{{$user->landline}}</td>
                                <td><a href="{{route('profile' , $user->id)}}"class="btn btn-primary">Check</a></td>
                                 @foreach($user->appliedStudent as $app)
                                 @if($app->status == 'accepted')
@@ -124,7 +150,12 @@
     </div>
     <script>
         $(document).ready( function () {
-            $('#myTable').DataTable();
+            $('#myTable').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'print'
+                ]
+            } );
         } );
     </script>
 @endsection

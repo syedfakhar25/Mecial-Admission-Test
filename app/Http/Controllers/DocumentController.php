@@ -58,6 +58,7 @@ class DocumentController extends Controller
             'state_subject1' => ['required','mimes:jpg,bmp,png'],
             'domicile1' => ['required','mimes:jpg,bmp,png'],
             'prc1' => ['required','mimes:jpg,bmp,png'],
+            'mcat_result1' => ['required','mimes:jpg,bmp,png'],
             'signature1' => ['required','mimes:jpg,bmp,png'],
         ]);
 
@@ -85,6 +86,10 @@ class DocumentController extends Controller
         if ($request->has('prc1')) {
             $path = $request->file('prc1')->store('', 'public');
             $request->merge(['prc' => $path]);
+        }
+        if ($request->has('mcat_result1')) {
+            $path = $request->file('mcat_result1')->store('', 'public');
+            $request->merge(['mcat_result' => $path]);
         }
         if ($request->has('signature1')) {
             $path = $request->file('signature1')->store('', 'public');
@@ -130,15 +135,6 @@ class DocumentController extends Controller
         if(Auth::user()->user_type != 'user' || count(Auth::user()->appliedStudent)>0){
             return redirect()->route('dashboard.index');
         }
-        $request->validate([
-            'matric1' => ['required','mimes:jpg,bmp,png'],
-            'fsc1' => ['required','mimes:jpg,bmp,png'],
-            'cnic1' => ['required','mimes:jpg,bmp,png'],
-            'state_subject1' => ['required','mimes:jpg,bmp,png'],
-            'domicile1' => ['required','mimes:jpg,bmp,png'],
-            'prc1' => ['required','mimes:jpg,bmp,png'],
-            'signature1' => ['required','mimes:jpg,bmp,png'],
-        ]);
 
         $document = Document::find($id);
 
@@ -165,6 +161,10 @@ class DocumentController extends Controller
         if ($request->has('prc1')) {
             $path = $request->file('prc1')->store('', 'public');
             $request->merge(['prc' => $path]);
+        }
+        if ($request->has('mcat_result1')) {
+            $path = $request->file('mcat_result1')->store('', 'public');
+            $request->merge(['mcat_result' => $path]);
         }
         if ($request->has('signature1')) {
             $path = $request->file('signature1')->store('', 'public');

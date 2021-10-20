@@ -18,6 +18,7 @@ class Document extends Model
         'state_subject',
         'domicile',
         'prc',
+        'mcat_result',
         'signature',
 
     ];

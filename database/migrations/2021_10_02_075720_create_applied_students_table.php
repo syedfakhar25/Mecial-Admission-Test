@@ -18,6 +18,7 @@ class CreateAppliedStudentsTable extends Migration
             $table->integer('admission_id');
             $table->integer('user_id');
             $table->string('status')->nullable(); //accepted or rejected
+            $table->string('challan')->nullable();
             $table->date('status_update_date')->nullable();
             $table->date('apply_date');
             $table->timestamps();

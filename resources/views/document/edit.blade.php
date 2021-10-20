@@ -89,6 +89,12 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label class="form-label" for="customFile">MCAT Result </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->mcat_result)}}    " alt="img" height="100px">
+                                                <input type="file" class="form-control" name="mcat_result1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
                                                 <label class="form-label" for="customFile">CNIC </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="cnic1" />
                                             </div>
@@ -107,7 +113,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">PRC (Not Applicable for Refugees 1947/89)</label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">PRC (Upload Refugee Card for Refugees 1947/89)</label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="prc1"/>
                                             </div>
                                         </div>

@@ -22,6 +22,7 @@ class CreateDocumentsTable extends Migration
             $table->string('state_subject')->nullable();
             $table->string('domicile')->nullable();
             $table->string('prc')->nullable();
+            $table->string('mcat_result')->nullable();
             $table->string('signature')->nullable();
             $table->timestamps();
         });

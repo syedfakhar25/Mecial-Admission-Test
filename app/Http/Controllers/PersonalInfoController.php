@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\College;
+use App\Models\Document;
 use App\Models\Qualification;
 use App\Models\User;
 use Dotenv\Validator;
@@ -86,15 +87,16 @@ class PersonalInfoController extends Controller
 
        $user = User::find($user_id);
        //dd($user);
-        if($user->user_type != 'user'|| $user->id!=Auth::user()->id){
+        /*if($user->user_type != 'user'|| $user->id!=Auth::user()->id){
             return redirect()->route('dashboard.index');
-        }
+        }*/
         if(!empty($user->category)  && strtolower($user->category) != 'null'){
             $category_options = json_decode($user->category);
         }
         else{
             $category_options=[];
         }
+
         //Aggregate Calculations
         $matric = Qualification::where('user_id', $user_id)->where('qual_type','matric')->get();
         $fsc = Qualification::where('user_id', $user_id)->where('qual_type','fsc')->get();
@@ -131,7 +133,9 @@ class PersonalInfoController extends Controller
             $college_names = [];
         }
 
-
+        //user's documents
+        $documents = Document::where('user_id', $user->id)->get();
+       //dd($documents->matirc);
      //$college_names = College::select('colleges')->where('id', 'in' , $preference_select)->get();
 
       $c_names = '';
@@ -149,6 +153,7 @@ class PersonalInfoController extends Controller
            'c_names',
             'matric',
            'fsc',
+           'documents',
            'aggregate'
        ));
     }
