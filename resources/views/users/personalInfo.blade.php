@@ -34,14 +34,14 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <label>Part 1 Category of Seats [Select the relevant]</label>
-                                            <div class="form-check col-12">
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'open_merit', $categories) ? 'checked' : '' }} value="open_merit">District Quota / Open Merit
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'overseas', $categories) ? 'checked' : '' }} value="overseas">Overseas
-                                                <input class="col-md-3"type="Checkbox" name="category_options[]" {{ in_array( 'disability', $categories) ? 'checked' : '' }} value="disability">Student with Disabilities
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'doctor', $categories) ? 'checked' : '' }} value="doctor">Doctor's Children
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'special_quota', $categories) ? 'checked' : '' }} value="special_quota">Special Quota for Neelam & Leepa
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'self', $categories) ? 'checked' : '' }} value="self">Self Finance
-                                                <input class="col-md-3" type="Checkbox" name="category_options[]" {{ in_array( 'bds', $categories) ? 'checked' : '' }} value="bds">BDS
+                                            <div class="form-check col-8">
+                                                <input class="col-md-6" type="Checkbox" name="category_options[]" {{ in_array( 'open_merit', $categories) ? 'checked' : '' }} value="open_merit">District Quota / Open Merit
+                                                <input class="col-md-6" type="Checkbox" name="category_options[]" {{ in_array( 'overseas', $categories) ? 'checked' : '' }} value="overseas">Overseas
+                                                <input class="col-md-6"type="Checkbox" name="category_options[]" {{ in_array( 'disability', $categories) ? 'checked' : '' }} value="disability">Student with Disabilities
+                                                <input class="col-md-6" type="Checkbox" name="category_options[]" {{ in_array( 'doctor', $categories) ? 'checked' : '' }} value="doctor">Doctor's Children
+                                                <input class="col-md-6" type="Checkbox" name="category_options[]" {{ in_array( 'special_quota', $categories) ? 'checked' : '' }} value="special_quota">Special Quota for Neelam & Leepa
+                                                <input class="col-md-6" type="Checkbox" name="category_options[]" {{ in_array( 'self', $categories) ? 'checked' : '' }} value="self">Self Finance
+                                                <input class="col-md-6" type="Checkbox" name="category_options[]" {{ in_array( 'bds', $categories) ? 'checked' : '' }} value="bds">BDS
                                             </div>
                                         </div>
                                     </div>
@@ -57,8 +57,9 @@
                                     </div>
                                     <div class="row">
                                        <div class="form-group">
-                                           <label class="form-label" for="customFile">Upload Image </label><span><em style="color: green">&nbsp Image must be type of jpg, png</em></span>
+                                           <label class="form-label" for="customFile" style="color: red">Upload Image </label><span><em style="color: green">&nbsp Image must be type of jpg, png</em></span>
                                            <input type="file" class="form-control" name="image1" id="customFile" />
+                                           <img src="{{\Illuminate\Support\Facades\Storage::url($user->image)}}    " alt="img" height="100px">
                                        </div>
                                     </div>
                                     <div class="row">

@@ -101,4 +101,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(AppliedStudent::class, 'user_id');
     }
+
+    //College Names
+    public static function CollegeNames($id){
+        $names = College::whereIn('id' , $id)->get();
+      // dd($names);
+        $name_arr = [];
+        foreach ($names as $name){
+            $name_arr[] = $name->colleges;
+        }
+
+        return $name_arr;
+    }
 }

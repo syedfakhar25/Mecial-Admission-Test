@@ -49,10 +49,12 @@ class PersonalInfoController extends Controller
         $user_id = $personalInfo->id;
         $cate = json_encode($request->category_options);
         $pref = json_encode($request->preference_select);
+        if($user->image == Null){
+            $request->validate([
+                'image1' => 'mimes:jpeg,jpg,png|required',
+            ]);
+        }
 
-        $request->validate([
-            'image1' => 'mimes:jpeg,jpg,png|required',
-        ]);
         if(!empty($cate) && $cate!='null')
         {
             $request->merge(['category' => $cate]);
@@ -111,17 +113,24 @@ class PersonalInfoController extends Controller
             $entry_test_marks = $user->chem + $user->bio +$user->physics;
             $entry_percentage = ($entry_test_marks/2400)*100;
         }
+        if(count($matric)>0){
+            $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
+        }else{
+            $matric_percentage =0;
+        }
 
-        $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
         $fsc_percentage = 0;
 
         //if fsc marks are null calculate from subject marks
-        if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
-            $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);
+        if(count($fsc)>0){
+            if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
+                $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);
+            }
+            else{
+                $fsc_percentage = ($fsc[0]->obtained_marks/1100)*100;
+            }
         }
-        else{
-            $fsc_percentage = ($fsc[0]->obtained_marks/1100)*100;
-        }
+
         $aggregate =(($matric_percentage/100)*10)+(($fsc_percentage/100)*40)+(($entry_percentage/100)*50);
 
         if(!empty($user->preference) && strtolower($user->preference) != 'null'){
@@ -175,14 +184,22 @@ class PersonalInfoController extends Controller
         $fsc = Qualification::where('user_id', $user_id)->where('qual_type','fsc')->get();
         $entry_test_marks = $user->entry_marks;
         $entry_percentage = ($entry_test_marks/210)*100;
-        $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
-        $fsc_percentage = 0;
-        //if fsc marks are null calculate from subject marks
-        if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
-            $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);
+        if(count($matric)>0){
+            $matric_percentage = ($matric[0]->obtained_marks/1100)*100;
+        }else{
+            $matric_percentage =0;
         }
-        else{
-            $fsc_percentage = ($fsc[0]->obtained_marks/1100)*100;
+
+        $fsc_percentage = 0;
+
+        //if fsc marks are null calculate from subject marks
+        if(count($fsc)>0){
+            if($fsc[0]->obtained_marks == NULL || $fsc[0]->obtained_marks == 0  || $fsc[0]->obtained_marks == "null"  || $fsc[0]->obtained_marks == Null){
+                $fsc_percentage = ((($fsc[0]->phy + $fsc[0]->chem + $fsc[0]->bio )/$fsc[0]->total_science)*100);
+            }
+            else{
+                $fsc_percentage = ($fsc[0]->obtained_marks/1100)*100;
+            }
         }
         $aggregate =(($matric_percentage/100)*10)+(($fsc_percentage/100)*40)+(($entry_percentage/100)*50);
 

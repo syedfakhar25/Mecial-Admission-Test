@@ -269,59 +269,66 @@
                                 <h3 class="card-title">Documents</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
+                            @if(count($documents)>0)
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
                                         <span style="font-weight: bold;">
                                             Matric
                                             <img id="imageZoom" class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->matric)}}" alt="image" height="">
                                         </span>
-                                        <br>
-                                        <hr width="100%">
-                                        <span style="font-weight: bold;">
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
                                             FSC/A levels
                                             <img class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->fsc)}}" alt="image" height="">
                                         </span>
-                                        <br>
-                                        <hr width="100%">
-                                        <span style="font-weight: bold;">
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
                                             CNIC
                                             <img class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}" alt="image" height="">
                                         </span>
-                                        <br>
-                                        <hr width="100%">
-                                        <span style="font-weight: bold;">
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
                                             Domicile
                                             <img class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->domicile)}}" alt="image" height="">
                                         </span>
-                                        <br>
-                                        <hr width="100%">
-                                        <span style="font-weight: bold;">
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
                                             PRC
                                             <img class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}" alt="image" height="">
                                         </span>
-                                        <br>
-                                        <hr width="100%">
-                                        <span style="font-weight: bold;">
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
                                             State Subject
                                             <img class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->state_subject)}}" alt="image" height="">
                                         </span>
-                                        <br>
-                                        <hr width="100%">
-                                        <span style="font-weight: bold;">
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
                                             Signature
                                             <img class=""
                                                  src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->signature)}}" alt="image" height="">
                                         </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="card-body">
+                                    No document added
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
