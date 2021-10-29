@@ -170,9 +170,9 @@ class PersonalInfoController extends Controller
     //print user profile
     public function printProfile(Request $request,$user_id){
        $user = User::find($user_id);
-        if($user->user_type != 'user' || $user->id!=Auth::user()->id){
+        /*if($user->user_type != 'user' || $user->id!=Auth::user()->id){
             return redirect()->route('dashboard.index');
-        }
+        }*/
         if(!empty($user->category)  && strtolower($user->category) != 'null'){
             $category_options = json_decode($user->category);
         }

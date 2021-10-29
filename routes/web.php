@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('dashboard', \App\Http\Controllers\DashboardController::class);
     //get all the students on dashboard
     Route::get('allStudents', [\App\Http\Controllers\DashboardController::class, 'allStudents'])->name('allStudents');
+    Route::get('allStudents-report', [\App\Http\Controllers\DashboardController::class, 'allStudentsReport'])->name('allStudents-report');
 
     Route::resource('personalInfo', PersonalInfoController::class);
     //approve a user

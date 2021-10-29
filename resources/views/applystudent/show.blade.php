@@ -48,7 +48,7 @@
                                             <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">Admission Title </th>
+                                               {{-- <th scope="col">Admission Title </th>--}}
                                                 <th scope="col">Applied Date</th>
                                                 <th scope="col">Admission Status</th>
                                             </tr>
@@ -57,7 +57,7 @@
                                             <tr>
                                                 @foreach($applied_admission as $adm)
                                                     <th scope="row"><? $count++?></th>
-                                                    <th scope="row">{{$adm->admission->admission_title}}</th>
+                                                   {{-- <th scope="row">{{$adm->admission->admission_title}}</th>--}}
                                                     <th scope="row">{{$adm->apply_date}}</th>
                                                     @if($adm->status == NULL)
                                                         <th scope="row" class="text-primary"><em>Pending</em></th>

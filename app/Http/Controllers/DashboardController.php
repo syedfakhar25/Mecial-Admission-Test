@@ -79,6 +79,22 @@ class   DashboardController extends Controller
             'users'
         ));
     }
+
+    //all students report
+    public function allStudentsReport(Request $request){
+        if(Auth::user()->user_type!='admin'){
+            return redirect()->route('dashboard');
+        }
+        $users = User::select('users.*')->join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
+
+        //qualification of user
+        //$qualification = $users->qualification;
+       // dd($qualification);
+       // dd($users);
+        return view('all-students-report', compact(
+            'users'
+        ));
+    }
     /**
      * Show the form for creating a new resource.
      *

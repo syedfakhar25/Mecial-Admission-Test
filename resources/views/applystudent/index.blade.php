@@ -44,6 +44,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                @elseif(date('Y-m-d') > $admission[0]->close_date)
+                                    <div class="card-body">
+                                        <div class="row"><span style="font-weight: bold; color: red"><em>Date has been passed</em></span></div>
+                                    </div>
                                 @else
                                     <div class="card-body">
                                         <div class="row"><span style="font-weight: bold; color: red"><em>Once applied you will not be able to update anything</em></span></div>

@@ -87,7 +87,7 @@
                         </h6>
                     </div>
                     <div class="col-md-3">
-                        <img src="{{\Illuminate\Support\Facades\Storage::url($user->image)}}    " alt="img" height="100px">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($user->image)}}    " alt="img" height="200px">
                     </div>
                 </div>
                 <div class="row"><br><br></div>
