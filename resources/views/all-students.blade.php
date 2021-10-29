@@ -17,7 +17,7 @@
             {{--Dashboard Users--}}
             <div class="card">
                 <div class="card-header border-transparent">
-                    <a href="/allStudents-report"><i class="fa fa-print"></i>Print in Excel</a>
+                    <a href="/allStudents-report"><i class="fa fa-print"></i> Export Options</a>
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -33,9 +33,9 @@
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                             <i class="fas fa-minus"></i>
                         </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        {{--<button type="button" class="btn btn-tool" data-card-widget="remove">
                             <i class="fas fa-times"></i>
-                        </button>
+                        </button>--}}
                     </div>
                 </div>
                 <div class="card-body p-0">

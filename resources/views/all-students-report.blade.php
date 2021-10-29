@@ -85,27 +85,49 @@
                         <table class="table m-0" id="myTable">
                             <thead>
                             <tr>
-                                <th>S. No</th>
-                                <th>Roll No</th>
+                                <th>S.#</th>
+                                <th>Roll#</th>
                                 <th>Name</th>
-                                <th>Father/Guardian Name</th>
+                                <th>Father/Guardian</th>
                                 <th>CNIC</th>
                                 <th>Domicile</th>
                                 <th>MCAT/SATMarks</th>
-                                <th>Hafiz-e-Quran</th>
-                                <th>Gender</th>
-                                <th>Matric Marks</th>
-                                <th>FSc Marks</th>
+                                <th>Hafiz</th>
+                                <th>Matric</th>
+                                <th>FSc</th>
                                 <th>Mobile</th>
-                                <th>Landline</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $i = 0;?>
+                            <?php $i = 0; ?>
                             @foreach($users as $user)
                                 <tr>
+                                    <?php
+                                        $matric = 0;
+                                        $fsc = 0;
+                                        $fresh_chem= 0;
+                                        $fresh_phy= 0;
+                                        $fresh_bio= 0;
+                                    ?>
                                     @foreach($user->qualification as $qual)
-                                        {{$qual->qual_type}}
+                                        @if($qual->qual_type == 'matric')
+                                            <?php
+                                                $matric = $qual->obtained_marks;
+
+                                            ?>
+                                        @elseif($qual->qual_type == 'fsc')
+                                            @if($qual->fresh_candidate ==1)
+                                                    <?php
+                                                    $fresh_chem= $qual->chem;
+                                                    $fresh_phy= $qual->phy;
+                                                    $fresh_bio= $qual->bio;
+                                                    ?>
+                                            @else
+                                                <?php
+                                                $fsc = $qual->obtained_marks;
+                                                ?>
+                                            @endif
+                                        @endif
                                     @endforeach
                                     <td>{{$i+=1}}</td>
                                     <td>{{$user->roll_no}}</td>
@@ -122,16 +144,15 @@
                                     </td>
                                     <td>
                                         @if($user->hafiz_quran == 1)
-                                            Hafiz-e-Quran
+                                            Yes
                                         @else
-                                            N/A
+                                            No
                                         @endif
                                     </td>
-                                    <td>{{$user->gender}}</td>
-                                    <td>pref</td>
-                                    <td>cate</td>
+                                    <td>{{$matric}}</td>
+                                    <td>{{($fsc != 0)? $fsc : 'Chem: '.$fresh_chem. ', Phy: ' . $fresh_phy. ', Bio: ' . $fresh_bio; }}
+                                    </td>
                                     <td>{{$user->mobile}}</td>
-                                    <td>{{$user->landline}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
