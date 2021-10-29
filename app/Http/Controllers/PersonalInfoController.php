@@ -11,6 +11,8 @@ use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 use Laravel\Jetstream\Jetstream;
 use phpDocumentor\Reflection\Types\Null_;
 use function GuzzleHttp\Promise\all;
@@ -247,5 +249,25 @@ class PersonalInfoController extends Controller
       return view('document.index', compact('user'))->with('success', 'Data Added Successfully!');
     }
 
+    public function ChangePassword(Request $request){
+        $user_id = Auth::user()->id;
+        return view('change-password');
+
+    }
+
+    public function PasswordChanged(Request $request){
+        /*$request->validate([
+            'password' => $this->passwordRules(),
+        ]);*/
+        $user_id = Auth::user()->id;
+        $pass = $request->password;
+        $password = Hash::make($pass);
+        $user = User::find($user_id);
+        $user->password = $password;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Approved Successfully!');
+
+    }
 
 }

@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     //get all the students on dashboard
     Route::get('allStudents', [\App\Http\Controllers\DashboardController::class, 'allStudents'])->name('allStudents');
     Route::get('allStudents-report', [\App\Http\Controllers\DashboardController::class, 'allStudentsReport'])->name('allStudents-report');
+    //change password for admin
+    Route::get('change-password', [\App\Http\Controllers\PersonalInfoController::class, 'ChangePassword'])->name('change-password');
+    Route::get('pass-changed', [\App\Http\Controllers\PersonalInfoController::class, 'PasswordChanged'])->name('pass-changed');
 
     Route::resource('personalInfo', PersonalInfoController::class);
     //approve a user

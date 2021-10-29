@@ -73,26 +73,28 @@
                     <i class="far fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
-                        <ul>
-                            <li>
-                                <h3 class="dropdown-item-title">
-                                    {{\Illuminate\Support\Facades\Auth::user()->name}}
-                                </h3>
-                            </li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
+                    <ul>
+                        <li>
+                            <h3 class="dropdown-item-title">
+                                {{\Illuminate\Support\Facades\Auth::user()->name}}
+                            </h3>
+                        </li>
+                        @if(Auth::user()->user_type == 'admin')
+                         <li><a href="{{route('change-password')}}">Change Password</a></li>
+                        @endif
 
-                                    <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                         onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-jet-dropdown-link>
-                                </form>
-                            </li>
-                        </ul>
-                    </a>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <x-jet-dropdown-link href="{{ route('logout') }}"
+                                                     onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-jet-dropdown-link>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </li>
         </ul>
