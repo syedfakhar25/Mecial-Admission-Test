@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\College;
+use App\Models\Qualification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,8 @@ class   DashboardController extends Controller
         $users = User::select('users.*')->join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
 
         //qualification of user
+        $matric = Qualification::where('qual_type', 'matric')->get();
+
         //$qualification = $users->qualification;
        // dd($qualification);
        // dd($users);

@@ -94,8 +94,8 @@
                                 <th>MCAT/SATMarks</th>
                                 <th>Hafiz-e-Quran</th>
                                 <th>Gender</th>
-                                <th>Preferences</th>
-                                <th>Categories</th>
+                                <th>Matric Marks</th>
+                                <th>FSc Marks</th>
                                 <th>Mobile</th>
                                 <th>Landline</th>
                             </tr>
@@ -104,6 +104,9 @@
                             <?php $i = 0;?>
                             @foreach($users as $user)
                                 <tr>
+                                    @foreach($user->qualification as $qual)
+                                        {{$qual->qual_type}}
+                                    @endforeach
                                     <td>{{$i+=1}}</td>
                                     <td>{{$user->roll_no}}</td>
                                     <td>{{$user->name}}</td>

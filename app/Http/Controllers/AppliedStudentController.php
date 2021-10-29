@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Admission;
 use App\Models\AppliedStudent;
+use App\Notifications\AcceptStudent;
 use Carbon\Carbon;
 use Carbon\Traits\Date;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,7 +89,8 @@ class   AppliedStudentController extends Controller
         $applied_admission = AppliedStudent::where('user_id',$user_id)->get();
         $applied_admission[0]->status = 'accepted';
         $applied_admission[0]->status_update_date = Carbon::now();
-
+        $user = \App\Models\User::find($user_id);
+        $user->notify(new \App\Notifications\AcceptStudent());
         $applied_admission[0]->update();
         return redirect()->back()->with('success', 'Status Updated Successfully');
     }
@@ -98,6 +101,8 @@ class   AppliedStudentController extends Controller
         $applied_admission[0]->status = 'rejected';
         $applied_admission[0]->status_update_date = Carbon::now();
 
+        $user = \App\Models\User::find($user_id);
+        $user->notify(new \App\Notifications\RejectStudent());
         $applied_admission[0]->update();
         return redirect()->back()->with('success', 'Status Updated Successfully');
     }
