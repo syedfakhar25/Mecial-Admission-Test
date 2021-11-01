@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admission;
+use App\Models\AppliedStudent;
 use App\Models\College;
 use App\Models\Document;
 use App\Models\Qualification;
 use App\Models\User;
+use App\Notifications\AcceptStudent;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -158,6 +160,7 @@ class PersonalInfoController extends Controller
           $c_names.=$count++ . ': ' . $cn->colleges;
       }
 
+       $applied_student = AppliedStudent::where('user_id', $user->id)->get();
        return view('users.profile', compact(
            'user',
            'category_options',
@@ -165,7 +168,8 @@ class PersonalInfoController extends Controller
             'matric',
            'fsc',
            'documents',
-           'aggregate'
+           'aggregate',
+           'applied_student'
        ));
     }
 

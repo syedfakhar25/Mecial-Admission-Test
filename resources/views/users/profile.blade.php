@@ -75,6 +75,27 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        @if(Auth::user()->user_type == 'admin')
+                            <!-- Personal Information-->
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Challan</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                @foreach($applied_student as $ap)
+                                                    <img
+                                                         src="{{\Illuminate\Support\Facades\Storage::url($ap->challan)}}"
+                                                         alt="No challan added">
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                        @endif
                         <!-- Personal Information-->
                         <div class="card card-primary">
                             <div class="card-header">
