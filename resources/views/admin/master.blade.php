@@ -157,7 +157,7 @@
                         <a href="/entrytest" class="nav-link ">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
-                                MCAT/SAT Score
+                                MCAT Score
                             </p>
                         </a>
                     </li>

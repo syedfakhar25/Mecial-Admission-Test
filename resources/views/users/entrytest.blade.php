@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1><em class="text-primary">MCAT/SAT Score</em></h1>
+                        <h1><em class="text-primary">MCAT Score</em></h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->

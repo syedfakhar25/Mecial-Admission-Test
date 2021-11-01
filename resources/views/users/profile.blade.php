@@ -215,9 +215,9 @@
                                     </tbody>
                                 </table>
                                 <hr width="100%">
-                                <b style="color: red"><em>Fresh Candidates Science Marks:</em></b>
+                                {{--<b style="color: red"><em>Fresh Candidates Science Marks:</em></b>
                                 <span>Physics: {{$user->qualification[0]->phy}} | Chemistry: {{$user->qualification[0]->chem}}
-                                    | Biology: {{$user->qualification[0]->bio}} | Total Marks:{{$user->qualification[0]->total_science}} </span>
+                                    | Biology: {{$user->qualification[0]->bio}} | Total Marks:{{$user->qualification[0]->total_science}} </span>--}}
                             </div>
                             <!-- /.card-body -->
                         </div>

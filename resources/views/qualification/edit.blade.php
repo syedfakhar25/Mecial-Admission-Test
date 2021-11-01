@@ -85,7 +85,7 @@
                                         <hr width="100%">
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12"> <b><em style="color: red">For FSc/A Levels</em></b> <span style="font-weight: bold; color: darkblue">(Fresh Candidates will enter only subject marks e.g; Physics, Chemistry, Biology)</span></div>
+                                        <div class="col-md-12"> <b><em style="color: red">For FSc/A Levels</em></b> <span style="font-weight: bold; color: darkblue">(Candidates will enter total of subject marks e.g; 555/600)</span></div>
                                         <div class="col-md-3 form-group">
                                             <label>Examination Passed</label>
                                             <input type="text" class="form-control" name="exam[]" value="{{$fsc->exam}}" placeholder="e.g; HSSC/ A level">
@@ -113,12 +113,12 @@
 
                                         <div class="col-md-3 form-group">
                                             <label>Marks Obtained</label>
-                                            <input type="text" class="form-control" name="obtained_marks[]" value="{{old('obtained_marks')}}">
+                                            <input type="text" class="form-control" name="obtained_marks[]" value="{{$fsc->obtained_marks}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Total Marks</label>
-                                            <input type="text" class="form-control" name="total_marks[]" value="{{old('total_marks')}}">
+                                            <input type="text" class="form-control" name="total_marks[]" value="{{$fsc->total_marks}}">
                                         </div>
 
                                         <div class="col-md-3 form-group">
@@ -128,7 +128,7 @@
 
                                     </div>
 
-                                    @if($fsc->fresh_candidate == 1)
+                                    {{--@if($fsc->fresh_candidate == 1)
                                     <div class="row">
                                         <div class="form-check col-md-12 ">
                                             <input class="form-check-input"  name="fresh_candidate" value="1" type="checkbox" checked>
@@ -154,7 +154,7 @@
                                         </div>
 
                                     </div>
-                                    @endif
+                                    @endif--}}
                                     <div class="row">
                                         <br>
                                     </div>

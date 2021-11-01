@@ -60,7 +60,7 @@ class QualificationController extends Controller
 
         if (isset($request->exam)) {
             for ($count = 0; $count < count($request->exam); $count++) {
-                if (!empty($request->exam[$count])) {
+                /*if (!empty($request->exam[$count])) {*/
                     Qualification::create([
                         'user_id' => $user_id,
                         'exam' => $request->exam[$count],
@@ -77,7 +77,7 @@ class QualificationController extends Controller
                         'total_science' => $request->total_science,
                         'total_marks' => $request->total_marks[$count],
                     ]);
-                }
+                /*}*/
             }
         }
 

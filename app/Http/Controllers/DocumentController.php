@@ -57,7 +57,7 @@ class DocumentController extends Controller
             'cnic1' => ['required','mimes:jpg,bmp,png'],
             'state_subject1' => ['required','mimes:jpg,bmp,png'],
             'domicile1' => ['required','mimes:jpg,bmp,png'],
-            'prc1' => ['required','mimes:jpg,bmp,png'],
+            /*'prc1' => ['required','mimes:jpg,bmp,png'],*/
             'mcat_result1' => ['required','mimes:jpg,bmp,png'],
             'signature1' => ['required','mimes:jpg,bmp,png'],
         ]);

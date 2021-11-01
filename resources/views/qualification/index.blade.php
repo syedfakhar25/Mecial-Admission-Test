@@ -83,7 +83,7 @@
                                         <hr width="100%">
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12"> <b><em style="color: red">For FSc/A Levels</em></b> <span style="font-weight: bold; color: darkblue">(Fresh Candidates will enter only subject marks e.g; Physics, Chemistry, Biology)</span></div>
+                                        <div class="col-md-12"> <b><em style="color: red">For FSc/A Levels</em></b> <span style="font-weight: bold; color: darkblue">(Candidates will enter total of subject marks e.g; 555/600)</span></div>
                                         <div class="col-md-3 form-group">
                                             <label>Examination Passed</label>
                                             <input type="text" class="form-control" name="exam[]" value="{{old('exam')}}" placeholder="e.g; HSSC/ A level">
@@ -111,12 +111,12 @@
 
                                         <div class="col-md-3 form-group">
                                             <label>Marks Obtained</label>
-                                            <input type="text" class="form-control" name="obtained_marks[]" value="{{old('obtained_marks')}}">
+                                            <input type="text" class="form-control" name="obtained_marks[]" value="{{old('obtained_marks')}}" placeholder="Obtained of Science Marks">
                                         </div>
 
                                         <div class="col-md-3 form-group">
                                             <label>Total Marks</label>
-                                            <input type="text" class="form-control" name="total_marks[]" value="{{old('total_marks')}}">
+                                            <input type="text" class="form-control" name="total_marks[]" value="{{old('total_marks')}}" placeholder="Total of Science Marks">
                                         </div>
 
                                         <div class="col-md-3 form-group">
@@ -124,13 +124,13 @@
                                         </div>
 
                                     </div>
-                                    <div class="row">
+                                    {{--<div class="row">
                                         <div class="form-check col-md-12 ">
                                             <input class="form-check-input"  name="fresh_candidate" value="1" type="checkbox" id="myCheck" onclick="myFunction()">
                                             <label class="form-check-label"><em style="font-weight: bold; color: green">Click here if you are fresh candidate</em></label>
                                         </div>
-                                    </div>
-                                    <div class="row" style="display:none" id="text">
+                                    </div>--}}
+                                    {{--<div class="row" style="display:none" id="text">
                                         <div class="col-md-12 form-group"><span style="font-weight: bold"><em>Only for Fresh Candidates</em></span></div>
                                         <div class="col-md-3 form-group">
                                             <label>Physics</label>
@@ -149,7 +149,7 @@
                                             <input type="text" class="form-control" name="total_science" value="{{old('total_science')}}">
                                         </div>
 
-                                    </div>
+                                    </div>--}}
                                     <div class="row">
                                         <br>
                                     </div>

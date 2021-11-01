@@ -90,6 +90,9 @@
                                 <th>Name</th>
                                 <th>Father/Guardian</th>
                                 <th>CNIC</th>
+                                <th>Postal Address</th>
+                                <th>Categories</th>
+                                <th>Preferences</th>
                                 <th>Domicile</th>
                                 <th>MCAT/SATMarks</th>
                                 <th>Hafiz</th>
@@ -134,6 +137,56 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->guardian_name}}</td>
                                     <td>{{$user->cnic}}</td>
+                                    <td>{{$user->address}}</td>
+                                    @php
+                                        $cat_array = json_decode($user->category);
+                                    @endphp
+                                    <td>
+                                        <?php
+                                            $cats_array=array();
+                                            foreach($cat_array as $cat)
+                                            {
+                                                if($cat == 'open_merit')
+                                                {
+                                                    $cats_array[] = 'District Quota / Open Merit';
+                                                }
+                                                if($cat == 'overseas')
+                                                {
+                                                    $cats_array[] = 'Overseas';
+                                                }
+                                                if($cat == 'disability')
+                                                {
+                                                    $cats_array[] = 'Student with Disabilities';
+                                                }
+                                                if($cat == 'doctor')
+                                                {
+                                                    $cats_array[] = 'Doctor\'s Children';
+                                                }
+                                                if($cat == 'special_quota')
+                                                {
+                                                    $cats_array[] = 'Special Quota for Neelam & Leepa';
+                                                }
+                                                if($cat == 'self')
+                                                {
+                                                     $cats_array[] = 'Self Finance';
+                                                }
+                                                if($cat == 'bds')
+                                                {
+                                                     $cats_array[] = 'BDS';
+                                                }
+                                            }
+                                            echo implode(', ',$cats_array);
+                                        ?>
+                                    </td>
+                                    @php
+                                        $pref_arr = json_decode($user->preference);
+                                        $college_names =  \App\Models\User::CollegeNames($pref_arr);
+
+                                        $names= implode(', ',$college_names);
+                                    @endphp
+                                    <td>
+                                        {{$names}}
+                                    </td>
                                     <td>{{$user->domicile}}</td>
                                     <td>
                                         @if($user->test_type=='mcat')
