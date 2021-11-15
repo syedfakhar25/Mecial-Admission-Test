@@ -24,7 +24,8 @@ class   DashboardController extends Controller
     {
        // $users = User::all();
 
-        //$users = User::all();
+        $registered_users = User::where('user_type', 'user')->get();
+        $count_registered_user = count($registered_users);
         //users who have applied on admission
         if(Auth::user()->user_type == 'admin'){
             $users = User::join('applied_students', 'users.id' ,'=', 'applied_students.user_id')->get();
@@ -34,15 +35,8 @@ class   DashboardController extends Controller
             $total_admissions = count($admissions);
             $college_count = $colleges->count();
 
-            // to get current admission name
-            $admission_first =  Admission::first();
-            $current_admission_title = $admission_first->admission_title;
-            $q_approved = $users->where('approved', '=', '1');
-            $q_not_approved = $users->where('approved', '!=', '1');
-            $approved = count($q_approved);
-            $not_approved = count($q_not_approved);
             $total_users = count($users);
-            
+
              $accepted = 0;
             $rejected = 0;
             $pending = 0;
@@ -59,28 +53,26 @@ class   DashboardController extends Controller
                 elseif($st->status == 'pending')
                     $pending = $st->user_count;
             }
-          
+
             //to get student applied per day
             $latest_admission = Admission::where('start_date', '<', Date('Y-m-d'))->orderBy('created_at', 'desc')->first();
-            $applied_per_day = DB::table('applied_students')
+            /*$applied_per_day = DB::table('applied_students')
                 ->select(DB::raw('count(*) as total, apply_date'))
                 ->groupBy('apply_date')
                 ->where('admission_id', $latest_admission->id)
                 ->orderBy('apply_date', 'asc')
-                ->get();
+                ->get();*/
 
             return view('dashboard', compact(
                 'users',
-                'approved',
-                'not_approved',
+                'count_registered_user',
                 'total_users',
                 'college_count',
                 'total_admissions',
-                'current_admission_title',
                 'accepted',
                 'rejected',
                 'pending',
-                'applied_per_day',
+               /* 'applied_per_day',*/
                 'latest_admission'
        ));
         }
@@ -97,9 +89,9 @@ class   DashboardController extends Controller
         }
         $users = User::select('users.*')->join('applied_students', 'users.id' ,'=', 'applied_students.user_id');
         if(isset($request->status) && !empty($request->status)){
-            $users = $users->where('status' , $request->status); 
+            $users = $users->where('status' , $request->status);
         }
-        $users = $users->get();    
+        $users = $users->get();
        // dd($users);
         return view('all-students', compact(
             'users'

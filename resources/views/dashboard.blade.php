@@ -16,7 +16,21 @@
             </div>
             {{--Dashboard cards--}}
             <div class="row">
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-gradient-gray">
+                        <div class="inner">
+                            <h3>{{$count_registered_user}}</h3>
+
+                            <p>Registered Users</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -31,13 +45,13 @@
                     </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>{{$total_admissions}}</h3>
 
-                            <p>Total Admissions</p>
+                            <p>Admissions Conducted</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-address-book"></i>
@@ -47,13 +61,13 @@
                 </div>
                 <!-- ./col -->
                 <!-- ./col -->
-                <div class="col-lg-4 col-6">
+                <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{$college_count}}</h3>
 
-                            <p>Institutions</p>
+                            <p>Available Institutions</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-building"></i>
@@ -135,7 +149,7 @@
                 <br>
                 <br>
             </div>
-            <div class="row">
+            {{--<div class="row">
                 <div class="col-md-6 bg-gradient-white">
                     <h3> <b><em>Total Applicants each Day</em></b></h3>
                     <hr width="100%">
@@ -147,10 +161,10 @@
                     <hr width="100%">
                     <canvas class="chart" id="line2-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-            </div>
+            </div>--}}
         </div>
     </div>
-    <script>
+    {{--<script>
         $(document).ready( function () {
             $('#myTable').DataTable();
 
@@ -282,5 +296,5 @@
                 }
             )
         } );
-    </script>
+    </script>--}}
 @endsection
