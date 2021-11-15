@@ -42,12 +42,30 @@
 
                                         <div class="col-md-3 form-group">
                                             <label>Admission Title</label>
-                                            <input type="text" class="form-control" name="admission_title" value="{{old('admission_title')}}" placeholder="e.g; Admission-2021">
+                                            <input type="text" class="form-control" name="admission_title" value="{{old('admission_title')}}" placeholder="e.g; Mbbs/Bds Admission">
                                         </div>
 
                                         <div class="col-md-3 form-group">
+                                            <label>Session</label>
+                                            <input type="text" class="form-control" name="session" value="{{old('session')}}" placeholder="e.g; 2021-22">
+                                        </div>
+
+                                        <div class="col-md-2 form-group">
+                                            <label>Start Date</label>
+                                            <input type="date" class="form-control" name="start_date" value="{{old('start_date')}}">
+                                        </div>
+
+                                        <div class="col-md-2 form-group">
                                             <label>Closed Date</label>
                                             <input type="date" class="form-control" name="close_date" value="{{old('close_date')}}">
+                                        </div>
+
+                                        <div class="col-md-2 form-group">
+                                            <label>Status</label>
+                                            <select name=status class="form-control">
+                                                <option>Active</option>
+                                                <option>In-Active</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -70,7 +88,10 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Admission Title </th>
+                                                <th scope="col">Session </th>
+                                                <th scope="col">Start Date </th>
                                                 <th scope="col">Close Date</th>
+                                                <th scope="col">Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                             </thead>
@@ -78,8 +99,11 @@
                                             @foreach($admissions as $admission)
                                                 <tr>
                                                     <th scope="row">{{$count+=1}}</th>
-                                                    <th scope="row">{{$admission->admission_title}}</th>
+                                                    <th scope="row">{{$admission->admission_title}} </th>
+                                                    <th scope="row">{{$admission->session}} </th>
+                                                    <th scope="row">{{$admission->start_date}}</th>
                                                     <th scope="row">{{$admission->close_date}}</th>
+                                                    <th scope="row">{{$admission->status}}</th>
                                                     <td colspan="2">
                                                         {{--<a href="{{url('admissions/'.$admission->id.'/edit')}}"><i class="text-blue fa fa-edit"></i></a>--}}
                                                         <form action="{{route('admissions.destroy', $admission->id)}}" method="POST">

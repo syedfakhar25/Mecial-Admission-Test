@@ -40,7 +40,7 @@ class RejectStudent extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.student.reject');
+        return (new MailMessage)->subject('Your Application Not Accepted')->markdown('mail.student.reject');
     }
 
     /**

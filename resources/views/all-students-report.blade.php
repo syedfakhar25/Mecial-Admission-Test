@@ -138,12 +138,13 @@
                                     <td>{{$user->guardian_name}}</td>
                                     <td>{{$user->cnic}}</td>
                                     <td>{{$user->address}}</td>
-                                    @php
+                                    <?php
                                         $cat_array = json_decode($user->category);
-                                    @endphp
+                                    ?>
                                     <td>
                                         <?php
-                                            $cats_array=array();
+                                            $cats_array=array(); //to put values in it
+                                            if(!empty($cat_array) && count($cat_array)>0)
                                             foreach($cat_array as $cat)
                                             {
                                                 if($cat == 'open_merit')
@@ -180,20 +181,18 @@
                                     </td>
                                     @php
                                         $pref_arr = json_decode($user->preference);
+                                        $names = '';
+                                        if(!empty($pref_arr) && count($pref_arr)>0){
                                         $college_names =  \App\Models\User::CollegeNames($pref_arr);
-
                                         $names= implode(', ',$college_names);
+                                        }
                                     @endphp
                                     <td>
                                         {{$names}}
                                     </td>
                                     <td>{{$user->domicile}}</td>
                                     <td>
-                                        @if($user->test_type=='mcat')
-                                            {{$user->entry_marks}}
-                                        @elseif($user->test_type=='sat')
-                                            Chem: {{$user->chem}} | Bio: {{$user->bio}} | Physics: {{$user->physics}}
-                                        @endif
+                                        {{$user->entry_marks}}
                                     </td>
                                     <td>
                                         @if($user->hafiz_quran == 1)
@@ -203,7 +202,7 @@
                                         @endif
                                     </td>
                                     <td>{{$matric}}</td>
-                                    <td>{{($fsc != 0)? $fsc : 'Chem: '.$fresh_chem. ', Phy: ' . $fresh_phy. ', Bio: ' . $fresh_bio; }}
+                                    <td>{{ $fsc}}
                                     </td>
                                     <td>{{$user->mobile}}</td>
                                 </tr>

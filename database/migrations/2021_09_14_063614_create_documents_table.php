@@ -24,6 +24,10 @@ class CreateDocumentsTable extends Migration
             $table->string('prc')->nullable();
             $table->string('mcat_result')->nullable();
             $table->string('signature')->nullable();
+            $table->string('overseas')->nullable();
+            $table->string('disable')->nullable();
+            $table->string('doctor')->nullable();
+            $table->string('hafiz')->nullable();
             $table->timestamps();
         });
     }

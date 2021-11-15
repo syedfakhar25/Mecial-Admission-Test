@@ -107,7 +107,7 @@
                                             <!-- text input -->
                                             <div class="form-group">
                                                 <label>Date of Birth</label>
-                                                <input type="date" name="dob" value="{{ old('dob', date('Y-m-d')) }}" class="form-control" placeholder="Enter Mother's Name ...">
+                                                <input type="date" name="dob" value="{{ $user->dob}}"" class="form-control" placeholder="Enter Mother's Name ...">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -142,7 +142,7 @@
                                             <!-- text input -->
                                             <div class="form-group">
                                                 <label>CNIC</label><em>(without dashes)</em>
-                                                <input type="text" name="cnic" value="{{$user->cnic}}" class="form-control" placeholder="e.g; 8220312345678" disabled>
+                                                <input type="text" name="cnic" value="{{$user->cnic}}" class="form-control cnic_mask" placeholder="e.g; 8220312345678" >
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
@@ -170,7 +170,7 @@
                                             <!-- text input -->
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="text" name="email" value="{{$user->email}}" disabled class="form-control" placeholder="e.g; example@gmail.com">
+                                                <input type="text" name="email" value="{{$user->email}}"  class="form-control" placeholder="e.g; example@gmail.com">
                                             </div>
                                         </div>
                                     </div>
@@ -182,19 +182,25 @@
                                             <h4 class=""> Choice of Institution</h4> <span style="font-weight: bold; color: red"><em>(Priority of institute is first if you select it first)</em></span>
                                         </div>
                                     </div>
-                                    <div class="row" >
-                                        <div class="col-md-6">
-
-                                            <style>
-                                                .select2 {
-                                                    width: 100% !important;
-                                                }
-                                            </style>
-                                            <select class="form-control  multiple-select" name="preference_select[]" multiple>
+                                    <div class="row mb-4" >
+                                        <div class="col-md-12">
+                            
+                                            <select data-reorder="true" class="form-control multiple-select" name="preference_select[]" multiple style="width: 100% !important;" data-dropdown-css-class="select2-purple">
                                                 <option disabled>-- Select Institutes --</option>
-                                                @foreach($colleges as $college)
-                                                <option value="{{$college->id}}">{{$college->colleges}}</option>
+                                                @foreach($mycolleges as $college)
+                                                    @if(is_array($preferences_decoded))
+                                                         @if(!in_array($college->id,$preferences_decoded))
+                                                            <option value="{{$college->id}}">{{$college->colleges}}</option>
+                                                        @endif
+                                                    @else
+                                                        <option value="{{$college->id}}">{{$college->colleges}}</option>
+                                                    @endif
                                                 @endforeach
+                                                @if(is_array($preferences_decoded))
+                                                    @foreach($preferences_decoded as $pref)
+                                                        <option value="{{$mycolleges[$pref]->id}}" selected>{{$mycolleges[$pref]->colleges}}</option>
+                                                    @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -216,12 +222,33 @@
         <!-- /.content -->
     </div>
 
+    
+    <script>
+        jQuery(document).ready(function() {
+            jQuery("select.multiple-select").each(function(){
+                $this = jQuery(this);
+                if($this.attr('data-reorder')){
+                    $this.on('select2:select', function(e){
+                        var elm = e.params.data.element;
+                        $elm = jQuery(elm);
+                        $t = jQuery(this);
+                        $t.append($elm);
+                        $t.trigger('change.select2');
+                    });
+                }
+                $this.select2({theme: "classic"});
+            });
+    
+        });
+    
+    
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.cnic_mask').mask('00000-0000000-0');
+    });
+</script>
 
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function() {
-        $('.multiple-select').select2();
-    });
-</script>

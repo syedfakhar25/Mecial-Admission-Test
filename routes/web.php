@@ -15,9 +15,13 @@ use App\Http\Controllers\PersonalInfoController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if(\Illuminate\Support\Facades\Auth::check()) {
+        return redirect()->route('dashboard.index');
+    }
+    else{
+        return redirect()->route('login');
+    }
 });
-
 
 
 
@@ -37,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/accept/{user_id}', [\App\Http\Controllers\AppliedStudentController::class, 'accept'])->name('accept');
     //reject a student
     Route::get('/reject/{user_id}', [\App\Http\Controllers\AppliedStudentController::class, 'reject'])->name('reject');
+    //withdraw from admission
+    Route::get('/withdraw_admission/{adm_id}', [\App\Http\Controllers\AppliedStudentController::class, 'WithdrawAdmission'])->name('withdraw_admission');
 
     //view profile
     Route::get('/profile/{user_id}', [PersonalInfoController::class, 'profile'])->name('profile');
@@ -51,7 +57,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/update_qualifications/', [\App\Http\Controllers\QualificationController::class, 'updateQualifications'])->name('update_qualifications');
 
     Route::resource('documents', \App\Http\Controllers\DocumentController::class);
-
+    Route::post('/documents/upload_user_images', [\App\Http\Controllers\DocumentController::class, 'upload_user_images_func'])->name('upload_user_images');
+    
+    
     //routes for student applying on an admission
     Route::resource('applystudent', \App\Http\Controllers\AppliedStudentController::class);
 

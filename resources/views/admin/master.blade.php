@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
     {{--Select2 --}}
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!--<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />-->
 
 
 
@@ -35,8 +35,11 @@
     <link rel="stylesheet" href="{{url('plugins/summernote/summernote-bs4.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+      <!-- Select2 -->
+    <link rel="stylesheet" href="{{url('plugins/select2/css/select2.min.css')}}">
 
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="{{url('plugins/jquery/jquery.min.js')}}" type="text/javascript"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>-->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -127,7 +130,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item has-treeview menu-open {{ request()->is('/dashboard') ? 'active' : '' }}">
+                    <li class="nav-item has-treeview  {{ request()->is('dashboard') ? 'menu-open' : '' }}">
                         <a href="{{route('dashboard.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -137,7 +140,7 @@
                     </li>
 
                     @if(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)==0)
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview {{ request()->is('personalInfo') ? 'menu-open' : '' }}">
                         <a href="/personalInfo"  class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
@@ -145,7 +148,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview {{ request()->is('qualification') ? 'menu-open' : '' }}">
                         <a href="/qualification" class="nav-link">
                             <i class="nav-icon fas fa-edit"></i>
                             <p>
@@ -153,7 +156,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview {{ request()->is('entrytest') ? 'menu-open' : '' }}">
                         <a href="/entrytest" class="nav-link ">
                             <i class="nav-icon fas fa-table"></i>
                             <p>
@@ -161,7 +164,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview {{ request()->is('documents') ? 'menu-open' : '' }}">
                         <a href="/documents" class="nav-link ">
                             <i class="nav-icon fas fa-pager"></i>
                             <p>
@@ -169,7 +172,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview {{ request()->routeIs('profile') ? 'menu-open' : '' }}">
                         <a href="{{route('profile' , Auth::user()->id)}}" class="nav-link ">
                             <i class="nav-icon fas fa-user-check"></i>
                             <p>
@@ -177,7 +180,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <li class="nav-item has-treeview {{ request()->is('challan') ? 'menu-open' : '' }}">
                         <a href="/challan" class="nav-link ">
                             <i class="nav-icon fas fa-book"></i>
                             <p>
@@ -186,7 +189,7 @@
                         </a>
                     </li>
                     @elseif(Auth::user()->user_type != 'admin' && count(Auth::user()->appliedStudent)>0)
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview {{ request()->is('profile') ? 'menu-open' : '' }}">
                             <a href="{{route('profile' , Auth::user()->id)}}" class="nav-link ">
                                 <i class="nav-icon fas fa-user-check"></i>
                                 <p>
@@ -194,7 +197,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview {{ request()->is('challan') ? 'menu-open' : '' }}">
                             <a href="/challan" class="nav-link ">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
@@ -203,7 +206,7 @@
                             </a>
                         </li>
                     @elseif(Auth::user()->user_type == 'admin')
-                        <li class="nav-item has-treeview {{ request()->is('/colleges') ? 'active' : '' }}">
+                        <li class="nav-item has-treeview {{ request()->is('colleges') ? 'menu-open' : '' }}">
                             <a href="/colleges" class="nav-link ">
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>
@@ -212,7 +215,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item has-treeview {{ request()->is('/admissions') ? 'active' : '' }}">
+                        <li class="nav-item has-treeview {{ request()->is('admissions') ? 'menu-open' : '' }}">
                             <a href="{{route('admissions.index')}}" class="nav-link ">
                                 <i class="nav-icon fas fa-school"></i>
                                 <p>
@@ -221,7 +224,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item has-treeview {{ request()->is('allStudents') ? 'active' : '' }}">
+                        <li class="nav-item has-treeview {{ request()->is('allStudents') ? 'menu-open' : '' }}">
                             <a href="{{route('allStudents')}}" class="nav-link ">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
@@ -270,38 +273,41 @@
 <!-- jQuery -->
 
 <!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{url('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Select2 -->
+<script src="{{url('plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{{url('plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<script src="{{url('plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{url('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{url('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{{url('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{url('plugins/moment/moment.min.js')}}"></script>
+<script src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{url('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="{{url('dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-{{--<script src="dist/js/pages/dashboard.js"></script>--}}
+{{--<script src="{{url('dist/js/pages/dashboard.js')}}"></script>--}}
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{url('dist/js/demo.js')}}"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>-->
 
 <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js" type="text/javascript"></script>

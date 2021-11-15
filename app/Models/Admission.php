@@ -11,7 +11,10 @@ class Admission extends Model
 
     protected $fillable = [
         'admission_title',
+        'session',
+        'start_date',
         'close_date',
+        'status',
     ];
 
     //relation with appliedstudent

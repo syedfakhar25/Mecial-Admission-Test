@@ -37,7 +37,7 @@
                         <!-- /.card-header -->
                             <div class="card-body">
                                 <h4 style="font-weight: bold">Upload Images of following documents here</h4>
-                                <h6 style="color:red; font-weight: bold">In case of signature and Thumb Impression, do it on paper and take picture</h6>
+                                <h6 style="color:red; font-weight: bold">(Allowed Formats: Jpg, Png) In case of signature and Thumb Impression, do it on paper and take picture</h6>
                                 <x-jet-validation-errors class="mb-4" />
                                 <hr width="100%">
                                 <form method="POST" action="{{ route('documents.store') }}" enctype="multipart/form-data">
@@ -45,50 +45,74 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">Matric </label>
+                                                <label class="form-label" for="customFile">Matric* </label>
                                                 <input type="file" class="form-control" name="matric1" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">FSc </label>
+                                                <label class="form-label" for="customFile">FSc* </label>
                                                 <input type="file" class="form-control" name="fsc1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">CNIC </label>
+                                                <label class="form-label" for="customFile">CNIC* </label>
                                                 <input type="file" class="form-control" name="cnic1" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">State Subject </label>
+                                                <label class="form-label" for="customFile">State Subject*</label>
                                                 <input type="file" class="form-control" name="state_subject1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">Domicile  </label>
+                                                <label class="form-label" for="customFile">Domicile*  </label>
                                                 <input type="file" class="form-control" name="domicile1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">PRC (Upload Refugee Card for Refugees 1947/89)</label>
+                                                <label class="form-label" for="customFile">PRC (Upload Refugee Card for Refugees 1989)</label>
                                                 <input type="file" class="form-control" name="prc1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">MCAT Result</label>
+                                                <label class="form-label" for="customFile">MCAT Result*</label>
                                                 <input type="file" class="form-control" name="mcat_result1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">Signature and Thumb Impression </label>
+                                                <label class="form-label" for="customFile">Signature and Thumb Impression* </label>
                                                 <input type="file" class="form-control" name="signature1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Proof of Dual Nationality</label>
+                                                <input type="file" class="form-control" name="overseas1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Proof of Disability</label>
+                                                <input type="file" class="form-control" name="disable1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Proof of Service in AJK As Doctor (10 Years)</label>
+                                                <input type="file" class="form-control" name="doctor1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Hafiz-e-Quran Certificate</label>
+                                                <input type="file" class="form-control" name="hafiz1"/>
                                             </div>
                                         </div>
 

@@ -1,9 +1,9 @@
 @component('mail::message')
-# Congratulations!!
+Dear Applicant,
 You have been selected by Joint Admission Committee AJ&K.
 
 
-@component('mail::button', ['url' => 'https://mcadmissions.ajk.gov.pk/forgot-password'])
+@component('mail::button', ['url' => 'https://mcadmissions.ajk.gov.pk'])
     Visit Website to check status
 @endcomponent
 

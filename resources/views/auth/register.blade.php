@@ -8,12 +8,14 @@
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="" align="center">
+            <div class="mb-4" align="center">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/AzadKashmirSeal.png" style="height: 50px !important;">
-                <b><em>Government Medical & Dental Institutions of the AJ&K</em></b>
-                <b><em>ADMISSION FORM</em></b>
+                <div class="py-2"><b>Government Medical & Dental Institutions of AJ&K</b></div>
+                <div class="pb-4"><b>ADMISSION PORTAL</b></div>
+                
                 <hr>
             </div>
+
 
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />

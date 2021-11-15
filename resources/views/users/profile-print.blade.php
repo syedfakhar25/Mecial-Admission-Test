@@ -39,13 +39,13 @@
                             <center>
                                 <h3 style="font-weight: bold"> Admission Form</h3>
                                 <h5 style="font-weight: bold"> For Admission to First Year MBBS/BDS Programme</h5>
-                                <h3 style="font-weight: bold"> Session 2020-21</h3>
+                                <h3 style="font-weight: bold"> Session 2021-22</h3>
                             </center>
                         </div>
                         <div class="col-md-3">
                             <img src="https://upload.wikimedia.org/wikipedia/en/5/59/UHS_Lahore_logo.jpg" alt="img2" height="100px">
                         </div>
-                    </div>
+                    </div><!--
                     <br>
                     <div class="row">
                         <div class="col-md-12">
@@ -54,7 +54,7 @@
                                 <em style="font-weight: bold"><u>{{number_format($aggregate, 4)}}</u> </em>
                             </center>
                         </div>
-                    </div>
+                    </div>-->
                 </center>
                 <div class="row">
                     <br><br>
@@ -87,7 +87,7 @@
                         </h6>
                     </div>
                     <div class="col-md-3">
-                        <img src="{{\Illuminate\Support\Facades\Storage::url($user->image)}}    " alt="img" height="200px">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($user->image)}}    " alt="img" height="100px">
                     </div>
                 </div>
                 <div class="row"><br><br></div>
@@ -262,7 +262,7 @@
                     </div>
                     <div class="col-md-12">
                         <p>
-                            I _______________________ S/D/O __________________________________ solemnly affirm that the information contained in this Admission Form, and the documents attached witht this form , are
+                            I <b><u>{{$user->name}}</u></b> S/D/O <b><u>{{$user->guardian_name}}</u></b> solemnly affirm that the information contained in this Admission Form, and the documents attached witht this form , are
                             complete and accurate. <br>
                             I understand that if any information in this apllication, or in the documents and the certificates that are attached with this application, is not complete
                             or accurate, I shall not be considered for admission, and if somehow admitted University shall cancel my admission as per provision Prospectus.
@@ -278,20 +278,27 @@
                         </p>
                     </div>
                     <div class="col-md-6" align="left">
-                        ______________________ <br>
+                        <b><u>{{$user->name}}</u></b> <br>
                         <b>Name of Applicant</b>
                     </div>
                     <div class="col-md-6" align="right">
-                        <b>Date: __________________</b>
+                        <b>Date: <u>{{date("Y-m-d")}}</u></b>
                     </div>
                 </div>
 
                 <div class="row"><br><br></div>
-                <div class="row">
+                <div class="row pb-4">
                     <div class="col-md-12">
                         <h5 style="font-weight: bold"> Prefrences</h5>
-                        <span style="font-weight: bold; color: red"><em class="text-danger">{{$c_names}}</em></span>
                     </div>
+                    @foreach($college_names as $key=>$cn)
+                        <div class="col-md-4">
+                            <span style="font-weight: bold;">{{($key+1)}}. {{$cn->colleges}}</span>
+                        </div>
+                    @endforeach    
+                        
+                        <!--<span style="font-weight: bold; color: red"><em class="text-danger">{{}}</em></span>-->
+                    
                 </div>
 
             </div>

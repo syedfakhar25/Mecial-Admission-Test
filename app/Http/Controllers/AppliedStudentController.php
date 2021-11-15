@@ -63,11 +63,12 @@ class   AppliedStudentController extends Controller
             $path = $request->file('challan1')->store('', 'public');
             $request->merge(['challan' => $path]);
         }
-
+        
         $c = AppliedStudent::create([
             'admission_id' => $admission_id,
             'user_id' => $user_id,
             'apply_date' => $apply_date,
+            'status' => 'pending',
             'challan' => $request->challan,
         ]);
 
@@ -87,6 +88,7 @@ class   AppliedStudentController extends Controller
     //accept student for admin
     public function accept(Request $request, $user_id){
         $applied_admission = AppliedStudent::where('user_id',$user_id)->get();
+        $applied_admission[0]->status_updated_by = Auth::user()->id;
         $applied_admission[0]->status = 'accepted';
         $applied_admission[0]->status_update_date = Carbon::now();
         $user = \App\Models\User::find($user_id);
@@ -98,6 +100,7 @@ class   AppliedStudentController extends Controller
     //reject student for admin
     public function reject(Request $request, $user_id){
         $applied_admission = AppliedStudent::where('user_id',$user_id)->get();
+        $applied_admission[0]->status_updated_by = Auth::user()->id;
         $applied_admission[0]->status = 'rejected';
         $applied_admission[0]->status_update_date = Carbon::now();
 
@@ -106,6 +109,16 @@ class   AppliedStudentController extends Controller
         $applied_admission[0]->update();
         return redirect()->back()->with('success', 'Status Updated Successfully');
     }
+    
+     //reject student for admin
+    public function WithdrawAdmission(Request $request, $adm_id){
+        $applied_admission = AppliedStudent::where('id',$adm_id)->first();
+        
+        $applied_admission->delete();
+        return redirect()->route('dashboard.index')->with('success', 'You have withdrawn from the admission.');
+    }
+    
+    
     /**
      * Display the specified resource.
      *

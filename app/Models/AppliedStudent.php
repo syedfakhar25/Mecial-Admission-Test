@@ -16,6 +16,7 @@ class AppliedStudent extends Model
       'challan',
       'status_update_date',
       'apply_date',
+      'status_updated_by',
     ];
 
     public function user(){

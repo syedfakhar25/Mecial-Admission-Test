@@ -93,6 +93,7 @@
     <script>
         $(document).ready( function () {
             $('#myTable').DataTable( {
+                iDisplayLength:50, 
                 /*dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'print'

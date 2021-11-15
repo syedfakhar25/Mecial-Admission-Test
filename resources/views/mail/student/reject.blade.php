@@ -1,11 +1,10 @@
 @component('mail::message')
-# Sorry!!
+Dear Applicant,
 
-We can not proceed with your application.
+Thank you for taking the time to apply. <br>
+Unfortunately, our team did not select you for further consideration.
+We wish you all the best for your future endeavors. <br>
 
-Better luck next time
-
-
-Thanks,<br>
+Regards<br>
 {{ config('app.name') }}
 @endcomponent

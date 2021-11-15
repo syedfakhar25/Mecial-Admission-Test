@@ -10,7 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1><em class="text-primary">Qualification</em></h1><span style="font-weight: bold">Aggregate Marks in HSSC/ equivalent must not be less than 65% i.e 715/1100</span>
+                        <h1><em class="text-primary">Qualification</em></h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -40,7 +40,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-12"> <b><em style="color: red">For Matric/O Levels</em></b></div>
+                                        <div class="col-md-12"> <b><em style="color: red">For Matric/O Levels</em></b> <span style="font-weight: bold; color: darkblue">Aggregate Marks in HSSC/ equivalent must not be less than 65% i.e 715/1100</span></div>
                                         <div class="col-md-3 form-group">
                                             <label>Examination Passed</label>
                                             <input type="text" class="form-control" name="exam[]" value="{{$matric->exam}}" placeholder="e.g; SSC/ O level">

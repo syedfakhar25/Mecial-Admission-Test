@@ -77,25 +77,25 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">Matric </label>  <img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->matric)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">Matric* </label>  <img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->matric)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="matric1" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">FSc </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->fsc)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">FSc* </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->fsc)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="fsc1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">MCAT Result </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->mcat_result)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">MCAT Result* </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->mcat_result)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="mcat_result1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">CNIC </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">CNIC* </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="cnic1" />
                                             </div>
                                         </div>
@@ -107,20 +107,44 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">Domicile  </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->domicile)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">Domicile*  </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->domicile)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="domicile1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">PRC (Upload Refugee Card for Refugees 1947/89)</label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">PRC (Upload Refugee Card for Refugees 1989)</label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="prc1"/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="customFile">Signature and Thumb Impression </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->signature)}}    " alt="img" height="100px">
+                                                <label class="form-label" for="customFile">Signature and Thumb Impression* </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->signature)}}    " alt="img" height="100px">
                                                 <input type="file" class="form-control" name="signature1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Proof of Dual Nationality </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->overseas)}}    " alt="img" height="100px">
+                                                <input type="file" class="form-control" name="overseas1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Proof of Disability </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->disable)}}    " alt="img" height="100px">
+                                                <input type="file" class="form-control" name="disable1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Proof of Service in AJK As Doctor (10 Years)</label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->doctor)}}    " alt="img" height="100px">
+                                                <input type="file" class="form-control" name="doctor1"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="customFile">Hafiz-e-Quran Certificate </label><img src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->hafiz)}}    " alt="img" height="100px">
+                                                <input type="file" class="form-control" name="hafiz1"/>
                                             </div>
                                         </div>
 

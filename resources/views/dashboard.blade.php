@@ -22,7 +22,7 @@
                         <div class="inner">
                             <h3>{{$total_users}}</h3>
 
-                            <p>Total Students</p>
+                            <p>Total Applicants</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-users"></i>
@@ -63,18 +63,22 @@
                 </div>
                 <!-- ./col -->
             </div>
+            <div class="row">
+                <br>
+                <br>
+            </div>
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h3 class="m-0 text-dark"><em style="font-weight: bold">{{$current_admission_title}} Stats</em></h3>
+                <div class="col-sm-12" align="center">
+                    <h3 class="m-0 text-dark"><em style="font-weight: bold">{{$latest_admission->admission_title.' '.$latest_admission->session }} Stats</em></h3>
                 </div><!-- /.col -->
             </div>
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                        <a href="{{route('allStudents')}}" class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></a>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Students</span>
+                            <span class="info-box-text">Total Applicants</span>
                             <span class="info-box-number">{{$total_users}}</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -84,7 +88,7 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check-circle"></i></span>
+                        <a href="{{route('allStudents')}}?status=accepted" class="info-box-icon bg-success elevation-1"><i class="fas fa-check-circle"></i></a>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Accepted</span>
@@ -101,7 +105,7 @@
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-times"></i></span>
+                        <a href="{{route('allStudents')}}?status=rejected" class="info-box-icon bg-danger elevation-1"><i class="fas fa-user-times"></i></a>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Rejected</span>
@@ -115,7 +119,7 @@
                 <a hre></a>
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <a href="/colleges" class="info-box-icon bg-warning elevation-1"><i class="fas fa-sync-alt"></i></a>
+                        <a href="{{route('allStudents')}}?status=pending" class="info-box-icon bg-warning elevation-1"><i class="fas fa-sync-alt"></i></a>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Pending</span>
@@ -127,125 +131,156 @@
                 </div>
                 <!-- /.col -->
             </div>
-            {{--Dashboard Users--}}
-            {{--<div class="card">
-                <div class="card-header border-transparent">
-                    <div class="row"><h3 class="card-title">All Users</h3></div>
-                    <div class="row">
-                        <br>
-                    </div>
-                    --}}{{--<form action="{{route('dashboard.index')}}" method="get">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <input type="text" name="filter[name]" class="form-control" placeholder="Search by Name"/>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="filter[cnic]" class="form-control" placeholder="Search by CNIC"/>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-control"  name="filter[category]">
-                                    <option  >Search by Category</option>
-                                    <option value="open_merit">District Quota / Open Merit</option>
-                                    <option value="overseas">Overseas</option>
-                                    <option value="disability">Student with Disabilities</option>
-                                    <option value="doctor">Doctor's Children</option>
-                                    <option value="special_quota">Special Quota for Neelam & Leepa</option>
-                                    <option value="self">Self Finance</option>
-                                    <option value="bds">BDS</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-control" name="filter[domicile]">
-                                    <option >Search by Qouta</option>
-                                    <option value="muzaffarabad" >Muzaffarabad</option>
-                                    <option value="neelum">Neelum</option>
-                                    <option value="hattian" >Hattian</option>
-                                    <option value="bagh" >Bagh</option>
-                                    <option value="haveli" >Haveli</option>
-                                    <option value="poonch" >Poonch</option>
-                                    <option value="sudhnuti" >Sudhnuti</option>
-                                    <option value="kotli" >Kotli</option>
-                                    <option value="mirpur" >Mirpur</option>
-                                    <option value="bhimber" >Bhimber</option>
-                                    <option value="1947" >Refugee 1947</option>
-                                    <option value="1989" >Refugee 1989</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="submit" name="search" class="btn btn-danger">Search</button>
-                            </div>
-                        </div>
-                    </form>--}}{{--
-
-                    @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if (session('error'))
-                        <div class="alert " role="alert">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+            <div class="row">
+                <br>
+                <br>
+            </div>
+            <div class="row">
+                <div class="col-md-6 bg-gradient-white">
+                    <h3> <b><em>Total Applicants each Day</em></b></h3>
+                    <hr width="100%">
+                    <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table m-0" id="myTable">
-                            <thead>
-                            <tr>
-                                <th>S. No</th>
-                                <th>Name</th>
-                                <th>CNIC</th>
-                                <th>Domicile</th>
-                                --}}{{--<th>Profile</th>--}}{{--
-                                <th>Approved</th>
-                                <th>Change Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php $i = 0;?>
-                            @foreach($users as $user)
-                            <tr>
-                                <td>{{$i+=1}}</td>
-                               <td>{{$user->name}}</td>
-                               <td>{{$user->cnic}}</td>
-                               <td>{{$user->domicile}}</td>
-                              --}}{{-- <td><a href="{{route('profile' , $user->id)}}"class="btn btn-primary">Check</a></td>--}}{{--
-                               @if($user->approved != 1)
-                                    <td><a href="{{route('approve' , $user->id)}}" class="btn btn-warning">Approve</a></td>
-                               @else
-                                    <td><span class="text-danger">Approved <i class="fa fa-check"></i></span></td>
-                                @endif
-                                --}}{{--@if($user->appliedstudent[0]->status == 'accepted')
-                                <td class="text-primary">Accepted</td>
-                                @elseif($user->appliedstudent[0]->status == 'rejected')
-                                <td class="text-danger">Rejected</td>
-                                @else
-                                <td><a href="{{route('accept' , $user->id)}}" class="btn btn-success">Accept</a>
-                                    <a href="{{route('reject' , $user->id)}}" class="btn btn-danger">Reject</a>
-                                </td>
-                                @endif--}}{{--
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+
+                <div class="col-md-6 bg-gradient-gray-white "  >
+                    <h3> <b><em>Applicants per Day</em></b></h3>
+                    <hr width="100%">
+                    <canvas class="chart" id="line2-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
-            </div>--}}
+            </div>
         </div>
     </div>
     <script>
         $(document).ready( function () {
             $('#myTable').DataTable();
+
+            // Sales graph chart
+            var salesGraphChartCanvas = $('#line-chart').get(0).getContext('2d');
+            //$('#revenue-chart').get(0).getContext('2d');
+
+            var salesGraphChartData = {
+                labels  :
+
+                    [@foreach($applied_per_day as $ad)"{{date('m-d',strtotime($ad->apply_date))}}",@endforeach],
+                datasets: [
+                    {
+                        label               : 'Total Applicants',
+                        fill                : false,
+                        borderWidth         : 2,
+                        lineTension         : 0,
+                        spanGaps : true,
+                        borderColor         : "green",
+                        pointRadius         : 3,
+                        pointHoverRadius    : 7,
+                        pointColor          : '#efefef',
+                        pointBackgroundColor: '#efefef',
+                        data                : [@php $sum=0; @endphp @foreach($applied_per_day as $ad) @php $sum+=$ad->total;  @endphp "{{$sum}}",@endforeach]
+                    }
+                ]
+            }
+
+            var salesGraphChartOptions = {
+                maintainAspectRatio : false,
+                responsive : true,
+                legend: {
+                    display: false,
+                },
+                scales: {
+                    xAxes: [{
+                        ticks : {
+                            fontColor: 'green',
+                        },
+                        gridLines : {
+                            display : false,
+                            color: 'green',
+                            drawBorder: false,
+                        }
+                    }],
+                    yAxes: [{
+                        ticks : {
+                            stepSize: 500,
+                            fontColor: 'green',
+                        },
+                        gridLines : {
+                            display : true,
+                            color: 'green',
+                            drawBorder: false,
+                        }
+                    }]
+                }
+            }
+
+            // This will get the first returned node in the jQuery collection.
+            var salesGraphChart = new Chart(salesGraphChartCanvas, {
+                    type: 'line',
+                    data: salesGraphChartData,
+                    options: salesGraphChartOptions
+                }
+            )
+
+            ///// 2nd graph for applicants per Day #line2-chart
+            var salesGraphChartCanvas = $('#line2-chart').get(0).getContext('2d');
+            //$('#revenue-chart').get(0).getContext('2d');
+
+            var salesGraphChartData= {
+                labels  :
+
+                    [@foreach($applied_per_day as $ad)"{{date('m-d',strtotime($ad->apply_date))}}",@endforeach],
+                datasets: [
+                    {
+                        label               : 'No. of Applicants',
+                        fill                : false,
+                        borderWidth         : 2,
+                        lineTension         : 0,
+                        spanGaps : true,
+                        borderColor         : 'blue',
+                        pointRadius         : 3,
+                        pointHoverRadius    : 7,
+                        pointColor          : '#efefef',
+                        pointBackgroundColor: '#efefef',
+                        data                : [@php $sum=0; @endphp @foreach($applied_per_day as $ad) @php $sum+=$ad->total;  @endphp "{{$ad->total}}",@endforeach]
+                    }
+                ]
+            }
+
+            var salesGraphChartOptions = {
+                maintainAspectRatio : false,
+                responsive : true,
+                legend: {
+                    display: false,
+                },
+                scales: {
+                    xAxes: [{
+                        ticks : {
+                            fontColor: 'blue',
+                        },
+                        gridLines : {
+                            display : false,
+                            color: 'blue',
+                            drawBorder: false,
+                        }
+                    }],
+                    yAxes: [{
+                        ticks : {
+                            stepSize: 100,
+                            fontColor: 'blue',
+                        },
+                        gridLines : {
+                            display : true,
+                            color: 'blue',
+                            drawBorder: false,
+                        }
+                    }]
+                }
+            }
+
+            // This will get the first returned node in the jQuery collection.
+            var salesGraphChart1 = new Chart(salesGraphChartCanvas, {
+                    type: 'line',
+                    data: salesGraphChartData,
+                    options: salesGraphChartOptions
+                }
+            )
         } );
     </script>
 @endsection

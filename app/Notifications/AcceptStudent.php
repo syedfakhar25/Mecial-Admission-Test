@@ -40,7 +40,7 @@ class AcceptStudent extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('mail.student.accept');
+        return (new MailMessage)->subject('Your Application Selected')->markdown('mail.student.accept');
     }
 
     /**

@@ -29,13 +29,25 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            @if (session('error'))
-                                <div class="alert " role="alert">
-                                    {{ session('error') }}
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                        @endif
+                            @endif
                         <!-- /.card-header -->
-                                @if($apply_status == 1)
+                                @if(date('Y-m-d') > $admission[0]->close_date)
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4><em>Admission is Closed Now</em></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif($apply_status == 1)
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
@@ -44,15 +56,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                @elseif(date('Y-m-d') > $admission[0]->close_date)
-                                    <div class="card-body">
-                                        <div class="row"><span style="font-weight: bold; color: red"><em>Date has been passed</em></span></div>
-                                    </div>
                                 @else
+
                                     <div class="card-body">
                                         <div class="row"><span style="font-weight: bold; color: red"><em>Once applied you will not be able to update anything</em></span></div>
                                         <div class="row"><hr width="100%"></div>
-                                        <form method="POST" action="{{route('applystudent.store')}}" enctype="multipart/form-data">
+                                        <form method="POST" id="applied" action="{{route('applystudent.store')}}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-4 form-group">
@@ -60,7 +69,7 @@
                                                     <select class="form-control" name="admission_title">
                                                         @foreach($admission as $adm)
                                                             <option disabled>--selecct an admission--</option>
-                                                            <option value="{{$adm->id}}">{{$adm->admission_title}}</option>
+                                                            <option value="{{$adm->id}}">{{$adm->admission_title.' '.$adm->session}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -74,7 +83,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <button class="btn btn-primary">APPLY</button>
+                                                <button class="btn btn-primary"  type="submit" onclick="$(this).attr('disabled', true); $('#applied').submit();">APPLY</button>
                                             </div>
                                         </form>
                                     </div>

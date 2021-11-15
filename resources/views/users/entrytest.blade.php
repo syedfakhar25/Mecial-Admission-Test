@@ -33,14 +33,14 @@
                                 <div class="alert " role="alert">
                                     {{ session('error') }}
                                 </div>
-                        @endif
+                            @endif
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if(Auth::user()->test_type=='mcat')
                                 <form method="POST" action="{{route('entrytest' , Auth::user()->id)}}">
                                     @method('PUT')
                                     @csrf
-                                        <div class="row"><h4>MDCAT</h4><span style="font-weight: bold; color: red"> &nbsp Marks must not be less than 60% i.e. 137/210</span></div>
+                                        <div class="row"><h4>MDCAT</h4><span style="font-weight: bold; color: red"> &nbsp Marks must not be less than 65% i.e. 137/210</span></div>
                                         <div class="row">
                                             <div class="col-md-4 form-group">
                                                 <label >Roll No:</label>
@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label>Marks Obtained:</label>
-                                                <input class="form-control" type="text" value="{{Auth::user()->entry_marks}}" placeholder=" e.g; 120">
+                                                <input class="form-control" type="text" value="{{Auth::user()->entry_marks}}"  name="entry_marks" placeholder=" e.g; 120">
                                             </div>
                                         </div>
                                     <div class="row">

@@ -41,12 +41,16 @@
                                 @endif
 
                                 <h3 class="profile-username text-center"><em><b>{{$user->name}}</b></em></h3>
-                                    @if(Auth::user()->user_type=='admin')
+                                   <!-- @if(Auth::user()->user_type=='admin')
                                         <div class="text-center" style="font-weight: bold"><em>Aggregate: <u>{{number_format($aggregate, 4)}}</u></em></div>
-                                    @endif
+                                    @endif-->
 
                                     @if(Auth::user()->user_type == 'user')
-                                        <div class="text-center" style="font-weight: bold; color: red"><em>Note: Check your profile, if anything is missing update it then <a href="{{route('dashboard.index')}}">Apply Here</a></em></div>
+                                        @if(count(Auth::user()->appliedStudent)>0)
+                                            <div class="text-center" style="font-weight: bold; color: red"><em>Note: You will not be able to update your profile information untill the decision has been taken<!--In case of incomplete profile <a href="https://www.youtube.com/watch?v=fqkH93K7rG4">Click Here</a>--></em></div>
+                                        @else
+                                            <div class="text-center" style="font-weight: bold; color: red"><em>Note: Check your profile, if anything is missing update it then <a href="/applystudent">Apply Here</a></em></div>
+                                        @endif
                                     @endif
                                 @if (session('success'))
                                     <div class="alert alert-success" role="alert">
@@ -88,7 +92,7 @@
                                                 @foreach($applied_student as $ap)
                                                     <img
                                                          src="{{\Illuminate\Support\Facades\Storage::url($ap->challan)}}"
-                                                         alt="No challan added">
+                                                         alt="No challan added" width="100%">
                                                 @endforeach
                                             </div>
                                         </div>
@@ -104,7 +108,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4"> <strong>Category Selected: </strong>
+                                    <div class="col-md-8"> <strong>Category Selected: </strong>
                                         @if(in_array('open_merit',$category_options))
                                             <span style="color: orangered"><em>District Quota / Open Merit,</em></span>
                                         @endif
@@ -280,9 +284,12 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <span style="font-weight: bold;"> {{$c_names}}</span>
-                                    </div>
+      
+                                    @foreach($college_names as $key=>$cn)
+                                        <div class="col-md-4">
+                                            <span style="font-weight: bold;">{{($key+1)}}. {{$cn->colleges}}</span>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -297,53 +304,96 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                        <span style="font-weight: bold;">
+                                            <span style="font-weight: bold;">
                                             Matric
                                             <img id="imageZoom" class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->matric)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->matric)}}" alt="image" width="100%">
+                                            </span>
                                             <br>
                                             <hr width="100%">
                                             <span style="font-weight: bold;">
                                             FSC/A levels
                                             <img class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->fsc)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->fsc)}}" alt="image" width="100%">
+                                             </span>
+                                            <br>
+                                            <hr width="100%">
+                                            <span style="font-weight: bold;">
+                                            MCAT Result
+                                            <img class=""
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->mcat_result)}}" alt="image" width="100%">
+                                            </span>
                                             <br>
                                             <hr width="100%">
                                             <span style="font-weight: bold;">
                                             CNIC
                                             <img class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->cnic)}}" alt="image" width="100%">
+                                            </span>
                                             <br>
                                             <hr width="100%">
                                             <span style="font-weight: bold;">
                                             Domicile
                                             <img class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->domicile)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->domicile)}}" alt="image" width="100%">
+                                            </span>
                                             <br>
                                             <hr width="100%">
                                             <span style="font-weight: bold;">
                                             PRC
                                             <img class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->prc)}}" alt="image" width="100%">
+                                            </span>
                                             <br>
                                             <hr width="100%">
                                             <span style="font-weight: bold;">
                                             State Subject
                                             <img class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->state_subject)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->state_subject)}}" alt="image" width="100%">
+                                            </span>
                                             <br>
                                             <hr width="100%">
                                             <span style="font-weight: bold;">
                                             Signature
                                             <img class=""
-                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->signature)}}" alt="image" height="">
-                                        </span>
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->signature)}}" alt="image" width="100%">
+                                            </span>
+                                           <br>
+                                            <hr width="100%">
+                                            @if($documents[0]->overseas != NULL)
+                                                <span style="font-weight: bold;">
+                                                Proof of dual Nationality
+                                                <img class=""
+                                                     src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->overseas)}}" alt="image" width="100%">
+                                                </span>
+                                            @endif
+                                            <br>
+                                            <hr width="100%">
+                                             @if($documents[0]->disable != NULL)
+                                                <span style="font-weight: bold;">
+                                                Proof of Disability 
+                                                <img class=""
+                                                     src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->disable)}}" alt="image" width="100%">
+                                                </span>
+                                             @endif
+                                             <br>
+                                                <hr width="100%">
+                                             @if($documents[0]->doctor != NULL)
+                                                <span style="font-weight: bold;">
+                                                Proof of Service in AJK as Doctor
+                                                <img class=""
+                                                     src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->doctor)}}" alt="image" width="100%">
+                                                </span>
+                                             @endif
+                                             <br>
+                                                <hr width="100%">
+                                             @if($documents[0]->hafiz != NULL)
+                                                <span style="font-weight: bold;">
+                                                Hafiz e Quran Certificate
+                                                <img class=""
+                                                     src="{{\Illuminate\Support\Facades\Storage::url($documents[0]->hafiz)}}" alt="image" width="100%">
+                                                </span>
+                                             @endif
                                         </div>
                                     </div>
                                 </div>

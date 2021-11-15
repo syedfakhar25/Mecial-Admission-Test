@@ -42,11 +42,17 @@ class AdmissionController extends Controller
     {
         $request->validate([
             'admission_title' => ['required'],
+            'session' => ['required'],
+            'start_date' => ['required'],
             'close_date' => ['required'],
         ]);
+       // dd($request->all());
         Admission::create([
             'admission_title' => $request['admission_title'],
+            'session' => $request['session'],
+            'start_date' => $request['start_date'],
             'close_date' => $request['close_date'],
+            'status' => $request['status'],
         ]);
 
         return redirect()->back()->with('success', 'Admission Created Successfully');

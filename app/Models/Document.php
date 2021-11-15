@@ -20,6 +20,10 @@ class Document extends Model
         'prc',
         'mcat_result',
         'signature',
+        'overseas',
+        'disable',
+        'doctor',
+        'hafiz'
 
     ];
     private $user_id;

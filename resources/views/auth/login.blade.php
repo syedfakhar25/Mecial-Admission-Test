@@ -14,10 +14,11 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="" align="center">
+            <div class="mb-4" align="center">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/AzadKashmirSeal.png" style="height: 50px !important;">
-                <b><em>Government Medical & Dental Institutions of the AJ&K</em></b>
-                <b><em>ADMISSION FORM</em></b>
+                <div class="py-2"><b>Government Medical & Dental Institutions of AJ&K</b></div>
+                <div class="pb-4"><b>ADMISSION PORTAL</b></div>
+                
                 <hr>
             </div>
 
@@ -51,11 +52,15 @@
 
             </div>
             <div><br><hr width="100%"></div>
-            <div class="" align="center">
+            <div class="mt-4" align="center">
 
                     @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="" style="text-decoration: none"><b style="color: red"><em>Register if not Already Registered</em></b></a>
                         @endif
+            </div>
+            <div class="mt-4" align="center">
+
+                    <a href="https://www.youtube.com/watch?v=H34EJq2_J8g" class="" style=""><b style="color: blue"><em>Click Here to Watch Video of Complete Procedure</em></b></a>
             </div>
         </form>
     </x-jet-authentication-card>
